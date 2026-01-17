@@ -352,6 +352,12 @@
             align-items: center;
         }
 
+        .product-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
         .product-price {
             font-size: 1.8rem;
             font-weight: 800;
@@ -366,7 +372,7 @@
             margin-left: 8px;
         }
 
-        .add-to-cart {
+        .buy-now {
             padding: 10px 20px;
             background-color: var(--primary);
             color: white;
@@ -375,10 +381,27 @@
             font-weight: 600;
             cursor: pointer;
             transition: background-color 0.3s;
+            width: 100%;
         }
 
-        .add-to-cart:hover {
+        .buy-now:hover {
             background-color: var(--primary-dark);
+        }
+
+        .promo-code-btn {
+            padding: 8px 16px;
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+
+        .promo-code-btn:hover {
+            background-color: #6d28d9;
         }
 
         /* Cart Sidebar */
@@ -1317,7 +1340,7 @@
                 originalPrice: 2000.00,
                 category: "ninjatrader",
                 image: "https://raw.githubusercontent.com/deol26/nextdraws-com/main/images/punjabi1.jpeg",
-                features: ["Customizable alerts (ਖਰੀਦੇ/ਵੇਚੇ", "Volume confirmation for higher probability trades", "Backtest integration", "Clear visual markers for entries/exits"]
+                features: ["Customizable alerts (ਖਰੀਦੇ/ਵੇਚੇ)", "Volume confirmation for higher probability trades", "Backtest integration", "Clear visual markers for entries/exits"]
             },
             {
                 id: 2,
@@ -1326,7 +1349,7 @@
                 price: 1000.00,
                 originalPrice: 2000.00,
                 category: "tradingview",
-                image: "https://raw.githubusercontent.com/deol26/nextdraws-com/e209bd7b8073d222aaf0a47e23f478b38f8f5c02/punjabi2/1.png",
+                image: "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=400&h=300&fit=crop",
                 features: ["Dynamic value areas", "Session volume analysis", "Customizable profiles", "Historical comparisons"]
             },
             {
@@ -1986,9 +2009,14 @@
                                 $${product.price.toFixed(2)}
                                 <span>$${product.originalPrice.toFixed(2)}</span>
                             </div>
-                            <button class="add-to-cart" data-id="${product.id}">
-                                Add to Cart
-                            </button>
+                            <div class="product-buttons">
+                                <button class="buy-now" data-id="${product.id}">
+                                    Buy
+                                </button>
+                                <button class="promo-code-btn" onclick="addToCart(${product.id}); document.getElementById('checkout').scrollIntoView({behavior: 'smooth'});">
+                                    Promo Code
+                                </button>
+                            </div>
                         </div>
                     </div>
                 `;
@@ -1996,11 +2024,10 @@
                 productsGrid.appendChild(productCard);
             });
             
-            // Add event listeners to add-to-cart buttons
-            document.querySelectorAll('.add-to-cart').forEach(button => {
+            // Add event listeners to buy-now buttons
+            document.querySelectorAll('.buy-now').forEach(button => {
                 button.addEventListener('click', function() {
-                    const productId = parseInt(this.getAttribute('data-id'));
-                    addToCart(productId);
+                    window.location.href = 'https://www.paypal.com/ncp/payment/8UVF7BBS2EHUY';
                 });
             });
         }
@@ -2519,8 +2546,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
