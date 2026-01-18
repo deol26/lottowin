@@ -243,7 +243,7 @@
         }
 
         .filter-btn {
-            padding: 10px 24px;
+            padding: 16px 32px;
             background-color: var(--card-bg);
             border: 1px solid var(--border);
             color: white;
@@ -251,6 +251,7 @@
             cursor: pointer;
             transition: all 0.3s;
             font-weight: 500;
+            font-size: 1.1rem;
         }
 
         .filter-btn.active, .filter-btn:hover {
@@ -624,7 +625,7 @@
             display: block;
             width: 100%;
             padding: 16px;
-            background-color: #003087;
+            background-color: #28a745;
             color: white;
             text-align: center;
             border-radius: 6px;
@@ -643,7 +644,7 @@
         }
 
         .paypal-btn:hover {
-            background-color: #002c7a;
+            background-color: #218838;
         }
 
         .paypal-btn i {
@@ -926,9 +927,41 @@
             font-weight: 600;
             font-size: 0.9rem;
         }
+
+        /* Disclaimer Ticker */
+        .disclaimer-ticker {
+            background-color: #000;
+            color: #fff;
+            padding: 8px 0;
+            font-weight: 800;
+            font-size: 0.9rem;
+            text-align: center;
+            position: relative;
+            z-index: 1001;
+        }
+
+        .ticker-content {
+            animation: blink 2s linear infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% {
+                opacity: 1;
+            }
+            51%, 100% {
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- Disclaimer Ticker -->
+    <div class="disclaimer-ticker">
+        <div class="ticker-content">
+            ⚠️ Trading involves risk and may not be suitable for all investors. Past performance does not guarantee future results. Always do your own research and consult with financial advisors. ⚠️
+        </div>
+    </div>
+
     <!-- Header -->
     <header>
         <div class="container">
@@ -980,7 +1013,7 @@
                 <button class="filter-btn" data-filter="ninjatrader">NinjaTrader</button>
                 <button class="filter-btn" data-filter="tradingview">TradingView</button>
                 <button class="filter-btn" data-filter="strategies">Strategies</button>
-                <button class="filter-btn" data-filter="education">Education</button>
+                <button class="filter-btn" data-filter="education">Education <small style="animation: blink 1s infinite; color: var(--success); font-weight: bold;">(new)</small></button>
             </div>
             
             <div class="products-grid" id="productsGrid">
@@ -2153,7 +2186,7 @@
                 originalPrice: 3000.00,
                 category: "education",
                 image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop",
-                features: ["Introduction to trading", "Trading platforms overview", "Types of trading (stocks, forex, crypto)", "Basic chart reading", "Risk management fundamentals", "Trading psychology"]
+                features: ["Introduction to trading", "Trading platforms overview", "Types of trading (stocks, forex, crypto)", "Basic chart reading", "Risk management fundamentals", "Trading psychology", "1 Premium Indicator included FREE"]
             },
             {
                 id: 62,
@@ -2163,7 +2196,7 @@
                 originalPrice: 6000.00,
                 category: "education",
                 image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400&h=300&fit=crop",
-                features: ["Advanced technical analysis", "5 premium indicators included", "Strategy development workshop", "Backtesting techniques", "Portfolio management", "Market timing strategies"]
+                features: ["Advanced technical analysis", "5 premium indicators included FREE", "Strategy development workshop", "Backtesting techniques", "Portfolio management", "Market timing strategies"]
             },
             {
                 id: 63,
@@ -2173,7 +2206,7 @@
                 originalPrice: 9000.00,
                 category: "education",
                 image: "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=400&h=300&fit=crop",
-                features: ["Professional market analysis", "5 premium indicators included", "2 custom indicators (built to your style)", "Institutional trading techniques", "Advanced risk management", "Live trading sessions", "Personal mentorship"]
+                features: ["Professional market analysis", "5 premium indicators included", "2 custom indicators (built to your style) FREE", "Institutional trading techniques", "Advanced risk management", "Live trading sessions", "Personal mentorship"]
             },
             {
                 id: 64,
@@ -2253,9 +2286,9 @@
                     </div>
                     <div class="product-content">
                         <h3 class="product-title">${product.name}</h3>
-                        <p class="product-description">${product.description}</p>
+                        <p class="product-description">${product.description.replace(/\(ਖਰੀਦੇ\/ਵੇਚੇ\)/g, '<span style="color: var(--success); font-weight: 900; animation: blink 1s infinite;">(ਖਰੀਦੇ/ਵੇਚੇ)</span>')}</p>
                         <ul class="product-features">
-                            ${product.features.map(feature => `<li><i class="fas fa-check-circle"></i> ${feature}</li>`).join('')}
+                            ${product.features.map(feature => `<li><i class="fas fa-check-circle"></i> ${feature.replace(/FREE/g, '<span style="animation: blink 1s infinite; color: var(--success); font-weight: 900;">FREE</span>')}</li>`).join('')}
                         </ul>
                         <div class="product-footer">
                             <div class="product-price">
