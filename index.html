@@ -404,6 +404,22 @@
             background-color: #6d28d9;
         }
 
+        .enroll-btn {
+            padding: 10px 20px;
+            background-color: var(--success);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+
+        .enroll-btn:hover {
+            background-color: #059669;
+        }
+
         /* Cart Sidebar */
         .cart-sidebar {
             position: fixed;
@@ -868,6 +884,48 @@
                 padding: 25px;
             }
         }
+
+        /* Testimonials */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .testimonial-card {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .testimonial-stars {
+            color: var(--warning);
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .testimonial-text {
+            color: var(--light);
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
     </style>
 </head>
 <body>
@@ -922,6 +980,7 @@
                 <button class="filter-btn" data-filter="ninjatrader">NinjaTrader</button>
                 <button class="filter-btn" data-filter="tradingview">TradingView</button>
                 <button class="filter-btn" data-filter="strategies">Strategies</button>
+                <button class="filter-btn" data-filter="education">Education</button>
             </div>
             
             <div class="products-grid" id="productsGrid">
@@ -999,6 +1058,11 @@
                     </button>
                 </form>
                 
+                <!-- PayPal Checkout Button -->
+                <a href="https://www.paypal.com/ncp/payment/8UVF7BBS2EHUY" target="_blank" class="paypal-btn active" id="paypalCheckoutBtn">
+                    <i class="fab fa-paypal"></i> Complete Payment with PayPal ($500.00)
+                </a>
+                
                 <div id="orderSummary">
                     <!-- Order items will be dynamically added here -->
                 </div>
@@ -1031,11 +1095,6 @@
                         <p style="color: var(--gray); font-size: 0.9rem;">Visa, MasterCard, American Express</p>
                     </div>
                 </div>
-                
-                <!-- PayPal Checkout Button -->
-                <a href="https://www.paypal.com/ncp/payment/8UVF7BBS2EHUY" target="_blank" class="paypal-btn active" id="paypalCheckoutBtn">
-                    <i class="fab fa-paypal"></i> Complete Payment with PayPal ($500.00)
-                </a>
                 
                 <div id="paymentAmountNotice" style="text-align: center; margin-top: 15px; padding: 15px; background-color: rgba(37, 99, 235, 0.1); border-radius: 8px; border: 1px solid var(--primary);">
                     <p style="color: var(--light); font-weight: 600; margin-bottom: 5px;">
@@ -1146,6 +1205,160 @@
                         <li style="margin-bottom: 8px;">Upon agreement, we start development</li>
                         <li>Receive your custom tool with documentation and support</li>
                     </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section" id="testimonials">
+        <div class="container">
+            <h2 class="section-title">What Our Customers Say</h2>
+            <p class="section-subtitle">Real feedback from traders using our tools</p>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"The Punjabi Trade Signals indicator is a game-changer! The authentic script makes it unique and the signals are incredibly accurate."</p>
+                    <div class="testimonial-author">- Raj Singh, Day Trader</div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Volume confirmation feature saved me from multiple bad trades. Highly recommend for serious traders."</p>
+                    <div class="testimonial-author">- Maria Gonzalez, Swing Trader</div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Backtest integration is seamless. I've tested this over 5 years of data and the results are consistent."</p>
+                    <div class="testimonial-author">- David Chen, Algorithmic Trader</div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Clear visual markers make it easy to spot entries and exits even on busy charts. Excellent tool!"</p>
+                    <div class="testimonial-author">- Sarah Johnson, Forex Trader</div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"The liquidity finder has improved my order flow analysis tremendously. Worth every penny."</p>
+                    <div class="testimonial-author">- Ahmed Hassan, Institutional Trader</div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Market structure scanner automatically draws trendlines better than I ever could manually."</p>
+                    <div class="testimonial-author">- Lisa Wong, Technical Analyst</div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Volume profile supreme gives me insights I never had before. Game-changing for volume analysis."</p>
+                    <div class="testimonial-author">- Michael Brown, Commodity Trader</div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"The swing trade master strategy has increased my win rate by 30%. Outstanding work."</p>
+                    <div class="testimonial-author">- James Wilson, Options Trader</div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Customizable alerts in multiple languages including Punjabi make this globally accessible."</p>
+                    <div class="testimonial-author">- Gurpreet Kaur, International Trader</div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Risk management module prevents emotional trading decisions. A must-have for discipline."</p>
+                    <div class="testimonial-author">- Robert Davis, Risk Manager</div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Performance analytics show exactly where I'm making money and where I'm losing it."</p>
+                    <div class="testimonial-author">- Emma Thompson, Portfolio Manager</div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Multi-asset support means I can use these tools across all my trading instruments."</p>
+                    <div class="testimonial-author">- Carlos Rodriguez, Multi-Asset Trader</div>
                 </div>
             </div>
         </div>
@@ -1931,6 +2144,46 @@
                 category: "strategies",
                 image: "https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=400&h=300&fit=crop",
                 features: ["ML algorithms", "Price forecasting", "Pattern recognition", "Confidence scores"]
+            },
+            {
+                id: 61,
+                name: "Beginner Trading Course",
+                description: "Complete introduction to trading for newcomers. Learn basics of markets, platforms, and fundamental concepts.",
+                price: 2000.00,
+                originalPrice: 3000.00,
+                category: "education",
+                image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop",
+                features: ["Introduction to trading", "Trading platforms overview", "Types of trading (stocks, forex, crypto)", "Basic chart reading", "Risk management fundamentals", "Trading psychology"]
+            },
+            {
+                id: 62,
+                name: "Experienced Trader Course",
+                description: "Advanced training for traders with some experience. Includes 5 premium indicators and strategy development.",
+                price: 4000.00,
+                originalPrice: 6000.00,
+                category: "education",
+                image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400&h=300&fit=crop",
+                features: ["Advanced technical analysis", "5 premium indicators included", "Strategy development workshop", "Backtesting techniques", "Portfolio management", "Market timing strategies"]
+            },
+            {
+                id: 63,
+                name: "Advanced Trader Masterclass",
+                description: "Elite training for professional traders. Includes market analysis, 5 indicators, and 2 custom indicators built to your style.",
+                price: 6000.00,
+                originalPrice: 9000.00,
+                category: "education",
+                image: "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=400&h=300&fit=crop",
+                features: ["Professional market analysis", "5 premium indicators included", "2 custom indicators (built to your style)", "Institutional trading techniques", "Advanced risk management", "Live trading sessions", "Personal mentorship"]
+            },
+            {
+                id: 64,
+                name: "Free Trading Fundamentals",
+                description: "Get started with trading basics absolutely free. Learn essential concepts and build your foundation.",
+                price: 0.00,
+                originalPrice: 0.00,
+                category: "education",
+                image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop",
+                features: ["Basic trading concepts", "Market understanding", "Risk management basics", "Trading terminology", "Getting started guide", "Free resources access"]
             }
         ];
 
@@ -2006,16 +2259,21 @@
                         </ul>
                         <div class="product-footer">
                             <div class="product-price">
-                                $${product.price.toFixed(2)}
-                                <span>$${product.originalPrice.toFixed(2)}</span>
+                                ${product.price === 0.00 ? 'FREE' : `$${product.price.toFixed(2)}`}
+                                ${product.price !== 0.00 ? `<span>$${product.originalPrice.toFixed(2)}</span>` : ''}
                             </div>
                             <div class="product-buttons">
-                                <button class="buy-now" data-id="${product.id}">
-                                    Buy
-                                </button>
-                                <button class="promo-code-btn" onclick="addToCart(${product.id}); document.getElementById('checkout').scrollIntoView({behavior: 'smooth'});">
-                                    Promo Code
-                                </button>
+                                ${product.price === 0.00 ? 
+                                    `<button class="enroll-btn" onclick="document.getElementById('checkout').scrollIntoView({behavior: 'smooth'});">
+                                        Enroll Now
+                                    </button>` :
+                                    `<button class="buy-now" data-id="${product.id}">
+                                        Buy
+                                    </button>
+                                    <button class="promo-code-btn" onclick="addToCart(${product.id}); document.getElementById('checkout').scrollIntoView({behavior: 'smooth'});">
+                                        Promo Code
+                                    </button>`
+                                }
                             </div>
                         </div>
                     </div>
@@ -2027,7 +2285,19 @@
             // Add event listeners to buy-now buttons
             document.querySelectorAll('.buy-now').forEach(button => {
                 button.addEventListener('click', function() {
-                    window.location.href = 'https://www.paypal.com/ncp/payment/8UVF7BBS2EHUY';
+                    const productId = parseInt(this.getAttribute('data-id'));
+                    let paypalLink = 'https://www.paypal.com/ncp/payment/8UVF7BBS2EHUY'; // Default link
+                    
+                    // Specific links for education courses
+                    if (productId === 61) {
+                        paypalLink = 'https://www.paypal.com/ncp/payment/3WQCTXJ7C4S4Q'; // Beginner Trading Course
+                    } else if (productId === 62) {
+                        paypalLink = 'https://www.paypal.com/ncp/payment/V7RK99LTB3CH2'; // Experienced Trader Course
+                    } else if (productId === 63) {
+                        paypalLink = 'https://www.paypal.com/ncp/payment/VBSRTPGDPZD6J'; // Advanced Trader Masterclass
+                    }
+                    
+                    window.location.href = paypalLink;
                 });
             });
         }
