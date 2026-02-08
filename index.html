@@ -1,12 +1,2876 @@
-<!-- Content of index.html from commit 370c80d01f36b6cb96c955fa4b51769375688881 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Next Draws</title>
+    <title>Nextdraw traders | Professional Indicators & Strategies</title>
+
+    <!-- Favicon and Icons -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nextdrawtraders.com/">
+    <meta property="og:title" content="Nextdraw traders | Professional Indicators & Strategies">
+    <meta property="og:description" content="Advanced trading tools and indicators for NinjaTrader and TradingView. Professional indicators, strategies, and automated trading solutions designed by traders, for traders.">
+    <meta property="og:image" content="https://nextdrawtraders.com/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="Nextdraw traders">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://nextdrawtraders.com/">
+    <meta property="twitter:title" content="Nextdraw traders | Professional Indicators & Strategies">
+    <meta property="twitter:description" content="Advanced trading tools and indicators for NinjaTrader and TradingView. Professional indicators, strategies, and automated trading solutions designed by traders, for traders.">
+    <meta property="twitter:image" content="https://nextdrawtraders.com/og-image.jpg">
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Advanced trading tools and indicators for NinjaTrader and TradingView. Professional indicators, strategies, and automated trading solutions designed by traders, for traders.">
+    <meta name="keywords" content="NinjaTrader, TradingView, trading indicators, automated strategies, volume profile, order flow, backtesting, technical analysis">
+    <meta name="author" content="Nextdraw traders">
+    <meta name="robots" content="index, follow">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #7c3aed;
+            --dark: #0f172a;
+            --darker: #020617;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --border: #334155;
+            --card-bg: #1e293b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--darker);
+            color: var(--light);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: rgba(2, 6, 23, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            font-size: 1.8rem;
+            color: white;
+            text-decoration: none;
+        }
+
+        .logo i {
+            color: var(--primary);
+        }
+
+        .logo span {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a.active {
+            color: var(--primary);
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary);
+        }
+
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--danger);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 700;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 100px 0;
+            background: radial-gradient(ellipse at top, rgba(37, 99, 235, 0.1), transparent 70%);
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+
+        .highlight {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 700;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        .btn {
+            padding: 14px 32px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: white;
+            border: 2px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* Products Section */
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            color: var(--gray);
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px;
+            font-size: 1.1rem;
+        }
+
+        .section {
+            padding: 100px 0;
+        }
+
+        .filters {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 16px 32px;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            color: white;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .product-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            z-index: 1;
+        }
+
+        .badge-ninjatrader {
+            background-color: #10b981;
+            color: white;
+        }
+
+        .badge-tradingview {
+            background-color: #f59e0b;
+            color: white;
+        }
+
+        .product-img {
+            height: 200px;
+            background: linear-gradient(135deg, #1e40af, #7c3aed);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .product-img i {
+            font-size: 4rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .product-content {
+            padding: 25px;
+        }
+
+        .product-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .product-description {
+            color: var(--gray);
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+
+        .product-features {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .product-features li {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .product-features i {
+            color: var(--success);
+            font-size: 0.9rem;
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .product-price {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .product-price span {
+            font-size: 1rem;
+            color: var(--gray);
+            font-weight: 500;
+            text-decoration: line-through;
+            margin-left: 8px;
+        }
+
+        .buy-now {
+            padding: 10px 20px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+
+        .buy-now:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .promo-code-btn {
+            padding: 8px 16px;
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+
+        .promo-code-btn:hover {
+            background-color: #6d28d9;
+        }
+
+        .enroll-btn {
+            padding: 10px 20px;
+            background-color: var(--success);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+
+        .enroll-btn:hover {
+            background-color: #059669;
+        }
+
+        /* Cart Sidebar */
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100vh;
+            background-color: var(--dark);
+            z-index: 1100;
+            transition: right 0.4s ease;
+            box-shadow: -5px 0 25px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            border-left: 1px solid var(--border);
+        }
+
+        .cart-sidebar.active {
+            right: 0;
+        }
+
+        .cart-header {
+            padding: 25px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-header h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            color: var(--gray);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .close-cart:hover {
+            color: white;
+        }
+
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            padding: 15px;
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border: 1px solid var(--border);
+        }
+
+        .cart-item-img {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+        }
+
+        .cart-item-img i {
+            font-size: 1.8rem;
+            color: white;
+        }
+
+        .cart-item-details {
+            flex: 1;
+        }
+
+        .cart-item-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .cart-item-price {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .cart-item-remove {
+            background: none;
+            border: none;
+            color: var(--danger);
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .cart-footer {
+            padding: 25px;
+            border-top: 1px solid var(--border);
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 25px;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .cart-empty {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--gray);
+        }
+
+        .cart-empty i {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--border);
+        }
+
+        /* Checkout Form */
+        .checkout-form {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 40px;
+            margin-top: 50px;
+            border: 1px solid var(--border);
+        }
+
+        .form-title {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: white;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--dark);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: white;
+            font-size: 1rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .payment-options {
+            display: flex;
+            gap: 20px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .payment-option {
+            flex: 1;
+            min-width: 200px;
+            background-color: var(--dark);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .payment-option:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .payment-option.active {
+            border-color: var(--primary);
+            background-color: rgba(37, 99, 235, 0.1);
+        }
+
+        .payment-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .paypal-btn {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            background-color: #28a745;
+            color: white;
+            text-align: center;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-decoration: none;
+            margin-top: 30px;
+            transition: background-color 0.3s;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .paypal-btn.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .paypal-btn:hover {
+            background-color: #218838;
+        }
+
+        .paypal-btn i {
+            margin-right: 10px;
+        }
+
+        .google-form-section {
+            background-color: var(--dark);
+            border-radius: 12px;
+            padding: 40px;
+            margin-top: 30px;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .google-form-btn {
+            display: inline-block;
+            padding: 16px 32px;
+            background-color: #4285f4;
+            color: white;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-decoration: none;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .google-form-btn:hover {
+            background-color: #3367d6;
+        }
+
+        .google-form-btn i {
+            margin-right: 10px;
+        }
+
+        .form-complete-check {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: rgba(16, 185, 129, 0.1);
+            border-radius: 8px;
+            border: 1px solid var(--success);
+        }
+
+        .form-complete-check input {
+            width: 20px;
+            height: 20px;
+        }
+
+        .payment-note {
+            text-align: center;
+            margin-top: 20px;
+            color: var(--gray);
+            font-size: 0.9rem;
+            padding: 15px;
+            background-color: rgba(245, 158, 11, 0.1);
+            border-radius: 8px;
+            border: 1px solid var(--warning);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            padding: 60px 0 30px;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .footer-description {
+            color: var(--gray);
+            margin-bottom: 25px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--card-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .social-icon:hover {
+            background-color: var(--primary);
+        }
+
+        .footer-heading {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: white;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .copyright {
+            text-align: center;
+            color: var(--gray);
+            padding-top: 30px;
+            border-top: 1px solid var(--border);
+        }
+
+        /* Overlay */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1050;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s, visibility 0.4s;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+            
+            .cart-sidebar {
+                width: 350px;
+            }
+            
+            .payment-options {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+                text-align: center;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .cart-sidebar {
+                width: 100%;
+                right: -100%;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero {
+                padding: 70px 0;
+            }
+            
+            .section {
+                padding: 70px 0;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .product-card {
+                max-width: 100%;
+            }
+            
+            .checkout-form {
+                padding: 25px;
+            }
+            
+            .google-form-section {
+                padding: 25px;
+            }
+        }
+
+        /* Testimonials */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .testimonial-card {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .testimonial-stars {
+            color: var(--warning);
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .testimonial-text {
+            color: var(--light);
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* Disclaimer Ticker */
+        .disclaimer-ticker {
+            background-color: #000;
+            color: #fff;
+            padding: 8px 0;
+            font-weight: 800;
+            font-size: 0.9rem;
+            text-align: center;
+            position: relative;
+            z-index: 1001;
+        }
+
+        .ticker-content {
+            animation: blink 2s linear infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% {
+                opacity: 1;
+            }
+            51%, 100% {
+                opacity: 0;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to Next Draws</h1>
+    <!-- Disclaimer Ticker -->
+    <div class="disclaimer-ticker">
+        <div class="ticker-content">
+            ⚠️ Trading involves risk and may not be suitable for all investors. Past performance does not guarantee future results. Always do your own research and consult with financial advisors. ⚠️
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">
+                    <i class="fas fa-chart-line"></i>
+                    Nextdraw <span>traders</span>
+                </a>
+                
+                <div class="nav-links">
+                    <a href="#" class="active">Home</a>
+                    <a href="#products">Products</a>
+                    <a href="#strategies">Strategies</a>
+                    <a href="#pricing">Pricing</a>
+                    <a href="#testimonials">Testimonials</a>
+                    <div class="cart-icon" id="cartIcon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count" id="cartCount">0</span>
+                    </div>
+                </div>
+                
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Professional Trading Tools for <span class="highlight">NinjaTrader & TradingView</span></h1>
+            <p>Advanced indicators, strategies, and tools designed by professional traders to give you an edge in the markets. Backtested, optimized, and ready for deployment.</p>
+            <div class="cta-buttons">
+                <a href="#products" class="btn btn-primary">Explore Products</a>
+                <a href="#strategies" class="btn btn-secondary">View Strategies</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="section" id="products">
+        <div class="container">
+            <h2 class="section-title">Premium Trading Tools</h2>
+            <p class="section-subtitle">Choose from our collection of advanced indicators and automated strategies for NinjaTrader and TradingView platforms.</p>
+            
+            <div class="filters">
+                <button class="filter-btn active" data-filter="all">All Products</button>
+                <button class="filter-btn" data-filter="ninjatrader">NinjaTrader</button>
+                <button class="filter-btn" data-filter="tradingview">TradingView</button>
+                <button class="filter-btn" data-filter="strategies">Strategies</button>
+                <button class="filter-btn" data-filter="education">Education <small style="animation: blink 1s infinite; color: var(--success); font-weight: bold;">(new)</small></button>
+            </div>
+            
+            <div class="products-grid" id="productsGrid">
+                <!-- Products will be dynamically added here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Checkout Section -->
+    <section class="section" id="checkout">
+        <div class="container">
+            <h2 class="section-title">Complete Your Purchase</h2>
+            <p class="section-subtitle">Fill in your information and proceed to payment</p>
+            
+            <div class="checkout-form">
+                <h3 class="form-title">Order Summary</h3>
+                
+                <!-- Customer Information Form -->
+                <form id="customerForm" action="https://formsubmit.co/teamalphacare9@gmail.com" method="POST" autocomplete="off">
+                    <!-- FormSubmit Configuration -->
+                    <input type="hidden" name="_subject" value="New Customer Order - Nextdraw traders">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="text" name="_honey" style="display:none">
+                    
+                    <div class="form-group">
+                        <label class="form-label">Email Address *</label>
+                        <input type="email" class="form-input" id="email" name="email" placeholder="your@email.com" autocomplete="off" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">First Name *</label>
+                            <input type="text" class="form-input" id="firstName" name="first_name" placeholder="John" autocomplete="off" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Last Name *</label>
+                            <input type="text" class="form-input" id="lastName" name="last_name" placeholder="Doe" autocomplete="off" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Country *</label>
+                            <input type="text" class="form-input" id="country" name="country" placeholder="United States" autocomplete="off" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Trading Platform *</label>
+                            <select class="form-input" id="platform" name="platform" autocomplete="off" required>
+                                <option value="">Select Platform</option>
+                                <option value="NinjaTrader">NinjaTrader</option>
+                                <option value="TradingView">TradingView</option>
+                                <option value="Both">Both Platforms</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- Promo Code Section -->
+                    <div class="form-group">
+                        <label class="form-label">Promo Code (Optional)</label>
+                        <div style="display: flex; gap: 10px; align-items: center;">
+                            <input type="text" class="form-input" id="promoCode" placeholder="Enter promo code" maxlength="6" autocomplete="off" style="text-transform: uppercase;">
+                            <button type="button" class="btn btn-secondary" id="applyPromoBtn" style="padding: 14px 24px; white-space: nowrap;">Apply</button>
+                        </div>
+                        <div id="promoMessage" style="margin-top: 10px; font-size: 0.9rem; display: none;"></div>
+                    </div>
+                    
+                    <!-- Hidden field for order details -->
+                    <input type="hidden" id="orderDetailsHidden" name="order_details" value="">
+                    <input type="hidden" id="orderTotalHidden" name="order_total" value="">
+                    <input type="hidden" id="promoCodeUsed" name="promo_code" value="None">
+                    
+                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-bottom: 20px;">
+                        <i class="fas fa-save"></i> Save My Information
+                    </button>
+                </form>
+                
+                <!-- PayPal Checkout Button -->
+                <a href="https://www.paypal.com/ncp/payment/8UVF7BBS2EHUY" target="_blank" class="paypal-btn active" id="paypalCheckoutBtn">
+                    <i class="fab fa-paypal"></i> Complete Payment with PayPal ($500.00)
+                </a>
+                
+                <div id="orderSummary">
+                    <!-- Order items will be dynamically added here -->
+                </div>
+                
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <span id="orderTotal">$0.00</span>
+                </div>
+                
+                <div style="text-align: center; margin: 30px 0; padding: 20px; background-color: rgba(37, 99, 235, 0.1); border-radius: 8px; border: 1px solid var(--primary);">
+                    <h4 style="margin-bottom: 10px; color: var(--primary);">Complete Your Information Above</h4>
+                    <p style="color: var(--gray); font-size: 0.95rem;">Fill out your details and click "Save My Information" to enable payment options</p>
+                </div>
+                
+                <!-- Payment Options -->
+                <div class="payment-options" id="paymentOptions" style="display: flex;">
+                    <div class="payment-option active" data-method="paypal">
+                        <div class="payment-icon">
+                            <i class="fab fa-paypal" style="color: #003087;"></i>
+                        </div>
+                        <h4>PayPal</h4>
+                        <p style="color: var(--gray); font-size: 0.9rem;">Pay with PayPal, Credit or Debit Card</p>
+                    </div>
+                    
+                    <div class="payment-option" data-method="card">
+                        <div class="payment-icon">
+                            <i class="far fa-credit-card" style="color: var(--primary);"></i>
+                        </div>
+                        <h4>Credit/Debit Card</h4>
+                        <p style="color: var(--gray); font-size: 0.9rem;">Visa, MasterCard, American Express</p>
+                    </div>
+                </div>
+                
+                <div id="paymentAmountNotice" style="text-align: center; margin-top: 15px; padding: 15px; background-color: rgba(37, 99, 235, 0.1); border-radius: 8px; border: 1px solid var(--primary);">
+                    <p style="color: var(--light); font-weight: 600; margin-bottom: 5px;">
+                        <i class="fas fa-info-circle"></i> Payment Amount: <span id="paymentAmount" style="color: var(--primary); font-size: 1.2rem;">$500.00</span>
+                    </p>
+                    <p style="color: var(--gray); font-size: 0.85rem;">
+                        Price includes 50% discount when promo code is applied
+                    </p>
+                </div>
+                
+                <!-- Standard Checkout Button (Initially Hidden) -->
+                <a href="https://www.paypal.com/ncp/payment/8UVF7BBS2EHUY" target="_blank" class="paypal-btn" id="standardCheckoutBtn" style="background-color: var(--primary); display: none; text-decoration: none;">
+                    <i class="far fa-credit-card"></i> Pay with Credit/Debit Card
+                </a>
+                
+                <div class="payment-note">
+                    <i class="fas fa-info-circle"></i> Please save your information above before proceeding with payment. All payments are secure and processed through PayPal.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Support Section -->
+    <section class="section" id="support" style="background-color: var(--dark);">
+        <div class="container">
+            <h2 class="section-title">Customer Support</h2>
+            <p class="section-subtitle">Need help? We're here to assist you with any questions or issues.</p>
+            
+            <div style="max-width: 600px; margin: 0 auto; text-align: center; background-color: var(--card-bg); padding: 40px; border-radius: 12px; border: 1px solid var(--border);">
+                <i class="fas fa-envelope" style="font-size: 3rem; color: var(--primary); margin-bottom: 20px;"></i>
+                <h3 style="margin-bottom: 20px;">Get in Touch</h3>
+                <p style="color: var(--gray); margin-bottom: 30px;">Have questions about our products, need technical support, or want to report an issue? Contact us and we'll respond within 24 hours.</p>
+                <a href="mailto:teamalphacare9@gmail.com" style="display: inline-block; padding: 14px 32px; background-color: var(--primary); color: white; text-decoration: none; border-radius: 8px; font-weight: 600; transition: background-color 0.3s;" onmouseover="this.style.backgroundColor='var(--primary-dark)'" onmouseout="this.style.backgroundColor='var(--primary)'">
+                    <i class="fas fa-paper-plane"></i> teamalphacare9@gmail.com
+                </a>
+                <p style="color: var(--gray); margin-top: 20px; font-size: 0.9rem;">Average response time: 24 hours</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Custom Development Section -->
+    <section class="section" id="custom">
+        <div class="container">
+            <h2 class="section-title">Custom Development</h2>
+            <p class="section-subtitle">Need a custom indicator or strategy? Let us build it for you!</p>
+            
+            <div class="checkout-form" style="max-width: 800px; margin: 0 auto;">
+                <h3 class="form-title">Custom Development Request</h3>
+                <p style="color: var(--gray); margin-bottom: 30px;">Tell us what you need and we'll create a custom solution tailored to your trading requirements.</p>
+                
+                <form id="customDevForm" action="https://formsubmit.co/teamalphacare9@gmail.com" method="POST" autocomplete="off">
+                    <input type="hidden" name="_subject" value="Custom Development Request - Nextdraw traders">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="text" name="_honey" style="display:none">
+                    
+                    <div class="form-group">
+                        <label class="form-label">Your Email *</label>
+                        <input type="email" class="form-input" name="email" placeholder="your@email.com" autocomplete="off" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">First Name *</label>
+                            <input type="text" class="form-input" name="first_name" placeholder="John" autocomplete="off" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Last Name *</label>
+                            <input type="text" class="form-input" name="last_name" placeholder="Doe" autocomplete="off" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Trading Platform *</label>
+                        <select class="form-input" name="platform" autocomplete="off" required>
+                            <option value="">Select Platform</option>
+                            <option value="NinjaTrader 8">NinjaTrader 8</option>
+                            <option value="TradingView (Pine Script)">TradingView (Pine Script)</option>
+                            <option value="Both Platforms">Both Platforms</option>
+                            <option value="Other">Other (specify in description)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">What do you want us to build? *</label>
+                        <textarea class="form-input" name="project_description" placeholder="Describe your custom indicator, strategy, or tool in detail. Include:
+- What it should do
+- Entry/exit conditions
+- Alerts or notifications needed
+- Any specific features" rows="8" autocomplete="off" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Estimated Budget (Optional)</label>
+                        <input type="text" class="form-input" name="budget" placeholder="e.g., $500-$1000" autocomplete="off">
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">
+                        <i class="fas fa-paper-plane"></i> Submit Custom Development Request
+                    </button>
+                </form>
+                
+                <div style="margin-top: 30px; padding: 20px; background-color: rgba(37, 99, 235, 0.1); border-radius: 8px; border: 1px solid var(--primary);">
+                    <p style="color: var(--light); margin-bottom: 10px;"><i class="fas fa-info-circle"></i> <strong>How it works:</strong></p>
+                    <ol style="color: var(--gray); padding-left: 20px; margin: 0;">
+                        <li style="margin-bottom: 8px;">Submit your request with detailed requirements</li>
+                        <li style="margin-bottom: 8px;">We'll review and provide a quote within 48 hours</li>
+                        <li style="margin-bottom: 8px;">Upon agreement, we start development</li>
+                        <li>Receive your custom tool with documentation and support</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section" id="testimonials">
+        <div class="container">
+            <h2 class="section-title">What Our Customers Say</h2>
+            <p class="section-subtitle">Real feedback from traders using our tools</p>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"The Punjabi Trade Signals indicator is a game-changer! The authentic script makes it unique and the signals are incredibly accurate."</p>
+                    <div class="testimonial-author">- Raj Singh, Day Trader</div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Volume confirmation feature saved me from multiple bad trades. Highly recommend for serious traders."</p>
+                    <div class="testimonial-author">- Maria Gonzalez, Swing Trader</div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Backtest integration is seamless. I've tested this over 5 years of data and the results are consistent."</p>
+                    <div class="testimonial-author">- David Chen, Algorithmic Trader</div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Clear visual markers make it easy to spot entries and exits even on busy charts. Excellent tool!"</p>
+                    <div class="testimonial-author">- Sarah Johnson, Forex Trader</div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"The liquidity finder has improved my order flow analysis tremendously. Worth every penny."</p>
+                    <div class="testimonial-author">- Ahmed Hassan, Institutional Trader</div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Market structure scanner automatically draws trendlines better than I ever could manually."</p>
+                    <div class="testimonial-author">- Lisa Wong, Technical Analyst</div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Volume profile supreme gives me insights I never had before. Game-changing for volume analysis."</p>
+                    <div class="testimonial-author">- Michael Brown, Commodity Trader</div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"The swing trade master strategy has increased my win rate by 30%. Outstanding work."</p>
+                    <div class="testimonial-author">- James Wilson, Options Trader</div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Customizable alerts in multiple languages including Punjabi make this globally accessible."</p>
+                    <div class="testimonial-author">- Gurpreet Kaur, International Trader</div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Risk management module prevents emotional trading decisions. A must-have for discipline."</p>
+                    <div class="testimonial-author">- Robert Davis, Risk Manager</div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Performance analytics show exactly where I'm making money and where I'm losing it."</p>
+                    <div class="testimonial-author">- Emma Thompson, Portfolio Manager</div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Multi-asset support means I can use these tools across all my trading instruments."</p>
+                    <div class="testimonial-author">- Carlos Rodriguez, Multi-Asset Trader</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Legal Documents Section -->
+    <section class="section" id="terms" style="background-color: var(--dark);">
+        <div class="container">
+            <div style="max-width: 900px; margin: 0 auto; background-color: var(--card-bg); padding: 50px; border-radius: 12px; border: 1px solid var(--border);">
+                <h2 style="font-size: 2rem; margin-bottom: 30px; color: white;">Terms of Service</h2>
+                <div style="color: var(--gray); line-height: 1.8;">
+                    <p style="margin-bottom: 20px;"><strong>Effective Date:</strong> January 16, 2026</p>
+                    
+                    <h3 style="color: white; margin-top: 30px; margin-bottom: 15px;">1. Acceptance of Terms</h3>
+                    <p>By accessing or using Nextdraw traders services, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our services.</p>
+                    
+                    <h3 style="color: white; margin-top: 30px; margin-bottom: 15px;">2. Product Usage</h3>
+                    <p>Our indicators and strategies are provided for trading assistance purposes. You are solely responsible for your trading decisions. Past performance does not guarantee future results.</p>
+                    
+                    <h3 style="color: white; margin-top: 30px; margin-bottom: 15px;">3. License Grant</h3>
+                    <p>Upon purchase, you receive a non-exclusive, non-transferable license to use the software for personal trading purposes only. Redistribution or resale is strictly prohibited.</p>
+                    
+                    <h3 style="color: white; margin-top: 30px; margin-bottom: 15px;">4. Risk Disclosure</h3>
+                    <p>Trading involves substantial risk of loss. Our tools do not guarantee profits. You should never trade with money you cannot afford to lose.</p>
+                    
+                    <h3 style="color: white; margin-top: 30px; margin-bottom: 15px;">5. Limitation of Liability</h3>
+                    <p>Nextdraw traders shall not be liable for any trading losses, damages, or expenses incurred through the use of our products.</p>
+                    
+                    <h3 style="color: white; margin-top: 30px; margin-bottom: 15px;">6. Contact</h3>
+                    <p>For questions about these terms, contact us at: <a href="mailto:teamalphacare9@gmail.com" style="color: var(--primary);">teamalphacare9@gmail.com</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="privacy">
+        <div class="container">
+            <div style="max-width: 900px; margin: 0 auto; background-color: var(--card-bg); padding: 50px; border-radius: 12px; border: 1px solid var(--border);">
+                <h2 style="font-size: 2rem; margin-bottom: 30px; color: white;">Privacy Policy</h2>
+                <div style="color: var(--gray); line-height: 1.8;">
+                    <p style="margin-bottom: 20px;"><strong>Effective Date:</strong> January 16, 2026</p>
+                    
+                    <h3 style="color: white; margin-top: 30px; margin-bottom: 15px;">1. Information We Collect</h3>
+                    <p>We collect information you provide during purchase including name, email, country, and payment information through PayPal.</p>
+                    
+                    <h3 style="color: white; margin-top: 30px; margin-bottom: 15px;">2. How We Use Your Information</h3>
+                    <p>Your information is used to process orders, deliver products, provide customer support, and send important updates about your purchase.</p>
+                    
+                    <h3 style="color: white; margin-top: 30px; margin-bottom: 15px;">3. Data Security</h3>
+                    <p>We implement security measures to protect your personal information. Payment processing is handled securely through PayPal.</p>
+                    
+                    <h3 style="color: white; margin-top: 30px; margin-bottom: 15px;">4. Information Sharing</h3>
+                    <p>We do not sell, trade, or rent your personal information to third parties. Your data is only shared with payment processors necessary to complete transactions.</p>
+                    
+                    <h3 style="color: white; margin-top: 30px; margin-bottom: 15px;">5. Your Rights</h3>
+                    <p>You have the right to access, update, or delete your personal information. Contact us for any privacy-related requests.</p>
+                    
+                    <h3 style="color: white; margin-top: 30px; margin-bottom: 15px;">6. Contact</h3>
+                    <p>For privacy concerns, contact us at: <a href="mailto:teamalphacare9@gmail.com" style="color: var(--primary);">teamalphacare9@gmail.com</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="license">
+        <div class="container">
+            <div style="max-width: 900px; margin: 0 auto; background-color: var(--card-bg); padding: 50px; border-radius: 12px; border: 1px solid var(--border);">
+                <h2 style="font-size: 2rem; margin-bottom: 30px; color: white;">License Agreement</h2>
+                <div style="color: var(--gray); line-height: 1.8;">
+                    <p style="margin-bottom: 20px;"><strong>Effective Date:</strong> January 16, 2026</p>
+                    
+                    <h3 style="color: white; margin-top: 30px; margin-bottom: 15px;">1. License Grant</h3>
+                    <p>Nextdraw traders grants you a limited, non-exclusive, non-transferable license to use purchased software for personal trading purposes.</p>
+                    
+                    <h3 style="color: white; margin-top: 30px; margin-bottom: 15px;">2. Permitted Use</h3>
+                    <p>You may:<br>
+                    - Install and use the software on your personal trading computers<br>
+                    - Use the software for your own trading activities<br>
+                    - Receive updates and support as provided</p>
+                    
+                    <h3 style="color: white; margin-top: 30px; margin-bottom: 15px;">3. Restrictions</h3>
+                    <p>You may NOT:<br>
+                    - Redistribute, resell, or share the software<br>
+                    - Reverse engineer or decompile the code<br>
+                    - Remove copyright or proprietary notices<br>
+                    - Use for commercial purposes beyond personal trading</p>
+                    
+                    <h3 style="color: white; margin-top: 30px; margin-bottom: 15px;">4. Intellectual Property</h3>
+                    <p>All software, indicators, and strategies remain the intellectual property of Nextdraw traders. Purchase grants usage rights only, not ownership.</p>
+                    
+                    <h3 style="color: white; margin-top: 30px; margin-bottom: 15px;">5. Termination</h3>
+                    <p>This license is effective until terminated. It terminates automatically if you violate any terms. Upon termination, you must cease use and delete all copies.</p>
+                    
+                    <h3 style="color: white; margin-top: 30px; margin-bottom: 15px;">6. Warranty Disclaimer</h3>
+                    <p>Software is provided "as is" without warranties. We do not guarantee uninterrupted operation or specific trading results.</p>
+                    
+                    <h3 style="color: white; margin-top: 30px; margin-bottom: 15px;">7. Contact</h3>
+                    <p>License questions? Contact: <a href="mailto:teamalphacare9@gmail.com" style="color: var(--primary);">teamalphacare9@gmail.com</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <div class="footer-logo">Nextdraw traders</div>
+                    <p class="footer-description">Professional trading tools and indicators for NinjaTrader and TradingView platforms. Developed by traders, for traders.</p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-discord"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h4 class="footer-heading">Products</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">NinjaTrader Indicators</a></li>
+                        <li><a href="#">TradingView Scripts</a></li>
+                        <li><a href="#">Automated Strategies</a></li>
+                        <li><a href="#">Custom Development</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4 class="footer-heading">Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="#documentation">Documentation</a></li>
+                        <li><a href="#tutorials">Video Tutorials</a></li>
+                        <li><a href="#support">Support</a></li>
+                        <li><a href="#custom">Custom Development</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4 class="footer-heading">Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="#terms">Terms of Service</a></li>
+                        <li><a href="#privacy">Privacy Policy</a></li>
+                        <li><a href="#license">License Agreement</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2026 Nextdraw traders. All rights reserved. Trading involves risk and may not be suitable for all investors.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <button class="close-cart" id="closeCart">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items will be dynamically added here -->
+            <div class="cart-empty" id="emptyCart">
+                <i class="fas fa-shopping-cart"></i>
+                <p>Your cart is empty</p>
+            </div>
+        </div>
+        
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotal">$0.00</span>
+            </div>
+            <a href="#checkout" class="btn btn-primary" style="width: 100%;" id="checkoutBtn">Proceed to Checkout</a>
+        </div>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
+
+    <script>
+        // Product Data
+        const products = [
+            {
+                id: 1,
+                name: "Punjabi Trade Signals",
+                description: "A unique NinjaTrader indicator that displays professional buy/sell signals in authentic Punjabi script (ਖਰੀਦੇ/ਵੇਚੇ).",
+                price: 500.00,
+                originalPrice: 2000.00,
+                category: "ninjatrader",
+                image: "https://raw.githubusercontent.com/deol26/nextdraws-com/main/images/punjabi1.jpeg",
+                features: ["Customizable alerts (ਖਰੀਦੇ/ਵੇਚੇ)", "Volume confirmation for higher probability trades", "Backtest integration", "Clear visual markers for entries/exits"]
+            },
+            {
+                id: 2,
+                name: "Volume Profile Supreme",
+                description: "Professional volume profile tool for TradingView with dynamic POC and value area calculations.",
+                price: 500.00,
+                originalPrice: 2000.00,
+                category: "tradingview",
+                image: "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=400&h=300&fit=crop",
+                features: ["Dynamic value areas", "Session volume analysis", "Customizable profiles", "Historical comparisons"]
+            },
+            {
+                id: 3,
+                name: "Swing Trade Master Strategy",
+                description: "Complete swing trading strategy with entry/exit signals, stop loss management, and profit targets.",
+                price: 500.00,
+                originalPrice: 2000.00,
+                category: "strategies",
+                image: "https://images.unsplash.com/photo-1642790551116-18e150f248e5?w=400&h=300&fit=crop",
+                features: ["Automated signal generation", "Risk management module", "Performance analytics", "Multi-asset support"]
+            },
+            {
+                id: 4,
+                name: "Liquidity Finder Pro",
+                description: "Detects liquidity pools and order blocks for NinjaTrader with smart visualization tools.",
+                price: 500.00,
+                originalPrice: 2000.00,
+                category: "ninjatrader",
+                image: "https://images.unsplash.com/photo-1611095790444-1dfa35e37b52?w=400&h=300&fit=crop",
+                features: ["Liquidity zone detection", "Order block highlighting", "Breakout probability", "Custom timeframes"]
+            },
+            {
+                id: 5,
+                name: "Market Structure Scanner",
+                description: "Real-time market structure analysis for TradingView with automatic trendline drawing.",
+                price: 500.00,
+                originalPrice: 2000.00,
+                category: "tradingview",
+                image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=400&h=300&fit=crop",
+                features: ["Automatic structure detection", "Support/resistance levels", "Breakout alerts", "Pattern recognition"]
+            },
+            {
+                id: 6,
+                name: "Algorithmic Trading Suite",
+                description: "Complete suite for automated trading strategies on NinjaTrader with backtesting optimization.",
+                price: 500.00,
+                originalPrice: 2000.00,
+                category: "strategies",
+                image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop",
+                features: ["Strategy builder", "Monte Carlo simulation", "Walk-forward optimization", "Live performance tracking"]
+            },
+            {
+                id: 7,
+                name: "Smart Money Tracker",
+                description: "Institutional order flow tracking system for identifying smart money movements in real-time.",
+                price: 500.00,
+                originalPrice: 2000.00,
+                category: "ninjatrader",
+                image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop",
+                features: ["Institutional tracking", "Dark pool detection", "Whale movement alerts", "Order flow analysis"]
+            },
+            {
+                id: 8,
+                name: "Fibonacci Master Tool",
+                description: "Advanced Fibonacci retracement and extension tool with automatic level plotting.",
+                price: 500.00,
+                originalPrice: 2000.00,
+                category: "tradingview",
+                image: "https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?w=400&h=300&fit=crop",
+                features: ["Auto Fibonacci levels", "Time zone analysis", "Confluence detection", "Multi-timeframe sync"]
+            },
+            {
+                id: 9,
+                name: "Scalping Pro System",
+                description: "High-frequency scalping strategy optimized for 1-5 minute charts with tight risk management.",
+                price: 500.00,
+                originalPrice: 2000.00,
+                category: "strategies",
+                image: "https://images.unsplash.com/photo-1559526324-593bc073d938?w=400&h=300&fit=crop",
+                features: ["Quick entry signals", "Automated stop loss", "High win rate", "Low drawdown"]
+            },
+            {
+                id: 10,
+                name: "Elliott Wave Analyzer",
+                description: "Automated Elliott Wave pattern recognition with wave count suggestions.",
+                price: 500.00,
+                originalPrice: 2000.00,
+                category: "ninjatrader",
+                image: "https://images.unsplash.com/photo-1633158829875-e5316a358c6f?w=400&h=300&fit=crop",
+                features: ["Wave identification", "Impulse/corrective labels", "Target projections", "Real-time updates"]
+            },
+            {
+                id: 11,
+                name: "RSI Divergence Hunter",
+                description: "Scans multiple timeframes for RSI divergences with automatic alert system.",
+                price: 500.00,
+                originalPrice: 2000.00,
+                category: "tradingview",
+                image: "https://images.unsplash.com/photo-1590650153855-d9e808231d41?w=400&h=300&fit=crop",
+                features: ["Bullish/bearish divergence", "Hidden divergence detection", "Custom RSI periods", "Alert notifications"]
+            },
+            {
+                id: 12,
+                name: "Breakout Beast Strategy",
+                description: "Momentum-based breakout strategy with volume confirmation and false breakout filter.",
+                price: 500.00,
+                originalPrice: 2000.00,
+                category: "strategies",
+                image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400&h=300&fit=crop",
+                features: ["Volume confirmation", "False breakout filter", "Dynamic targets", "Risk management"]
+            },
+            {
+                id: 13,
+                name: "VWAP Master Indicator",
+                description: "Professional VWAP tool with standard deviation bands and anchored VWAP capabilities.",
+                price: 500.00,
+                originalPrice: 2000.00,
+                category: "ninjatrader",
+                image: "https://images.unsplash.com/photo-1579532537598-459ecdaf39cc?w=400&h=300&fit=crop",
+                features: ["Multi-period VWAP", "Deviation bands", "Anchored VWAP", "Volume weighted levels"]
+            },
+            {
+                id: 14,
+                name: "Candlestick Pattern Pro",
+                description: "Comprehensive candlestick pattern recognition with reliability ratings and alerts.",
+                price: 500.00,
+                originalPrice: 2000.00,
+                category: "tradingview",
+                image: "https://images.unsplash.com/photo-1642790595390-6b21f9b2b45f?w=400&h=300&fit=crop",
+                features: ["50+ patterns", "Reliability scores", "Real-time alerts", "Historical accuracy"]
+            },
+            {
+                id: 15,
+                name: "Trend Rider System",
+                description: "Long-term trend following strategy with adaptive position sizing and trailing stops.",
+                price: 500.00,
+                originalPrice: 2000.00,
+                category: "strategies",
+                image: "https://images.unsplash.com/photo-1613243555978-c155d7e29f18?w=400&h=300&fit=crop",
+                features: ["Adaptive position sizing", "Trailing stop system", "Trend strength filter", "Multi-asset support"]
+            },
+            {
+                id: 16,
+                name: "Support Resistance Zones",
+                description: "Intelligent support and resistance zone identification with strength ratings.",
+                price: 500.00,
+                originalPrice: 2000.00,
+                category: "ninjatrader",
+                image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=400&h=300&fit=crop",
+                features: ["Auto zone detection", "Strength ratings", "Historical touches", "Break alerts"]
+            },
+            {
+                id: 17,
+                name: "Supertrend Indicator Pro",
+                description: "Enhanced Supertrend indicator with multiple timeframe analysis and custom ATR periods.",
+                price: 500.00,
+                originalPrice: 2000.00,
+                category: "tradingview",
+                image: "https://images.unsplash.com/photo-1642543492849-56a9b9b42d3b?w=400&h=300&fit=crop",
+                features: ["Multi-period Supertrend", "Trend strength", "Entry signals", "Stop loss levels"]
+            },
+            {
+                id: 18,
+                name: "Mean Reversion Master",
+                description: "Statistical mean reversion strategy using Bollinger Bands and standard deviation.",
+                price: 500.00,
+                originalPrice: 2000.00,
+                category: "strategies",
+                image: "https://images.unsplash.com/photo-1620321023374-d1a68fbc720d?w=400&h=300&fit=crop",
+                features: ["Statistical analysis", "Oversold/overbought signals", "Auto mean calculation", "Risk controls"]
+            },
+            {
+                id: 19,
+                name: "Order Flow Imbalance",
+                description: "Advanced order flow analysis showing buy/sell imbalances and institutional activity.",
+                price: 500.00,
+                originalPrice: 2000.00,
+                category: "ninjatrader",
+                image: "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=400&h=300&fit=crop",
+                features: ["Delta analysis", "Bid/ask imbalance", "Volume footprint", "Absorption detection"]
+            },
+            {
+                id: 20,
+                name: "Multi-Timeframe Trend",
+                description: "Analyzes trend across multiple timeframes for confluence trading opportunities.",
+                price: 500.00,
+                originalPrice: 2000.00,
+                category: "tradingview",
+                image: "https://images.unsplash.com/photo-1543286386-2e659306cd6c?w=400&h=300&fit=crop",
+                features: ["5 timeframe analysis", "Trend alignment", "Confluence scoring", "Visual dashboard"]
+            },
+            {
+                id: 21,
+                name: "Gap Trading System",
+                description: "Specialized strategy for trading opening gaps with statistical edge and risk management.",
+                price: 500.00,
+                originalPrice: 2000.00,
+                category: "strategies",
+                image: "https://images.unsplash.com/photo-1569025690938-a00729c9e1f9?w=400&h=300&fit=crop",
+                features: ["Gap classification", "Fill probability", "Entry timing", "Risk parameters"]
+            },
+            {
+                id: 22,
+                name: "Smart Order Block Detector",
+                description: "Identifies institutional order blocks with precision for optimal entry points.",
+                price: 500.00,
+                originalPrice: 2000.00,
+                category: "ninjatrader",
+                image: "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=400&h=300&fit=crop",
+                features: ["Order block mapping", "Fair value gaps", "Mitigation tracking", "Alert system"]
+            },
+            {
+                id: 23,
+                name: "Stochastic RSI Combo",
+                description: "Combined Stochastic and RSI indicator with divergence detection and overbought/oversold zones.",
+                price: 500.00,
+                originalPrice: 2000.00,
+                category: "tradingview",
+                image: "https://images.unsplash.com/photo-1639322537504-6427a16b0a28?w=400&h=300&fit=crop",
+                features: ["Dual oscillator", "Divergence scanner", "Custom thresholds", "Multi-timeframe view"]
+            },
+            {
+                id: 24,
+                name: "News Trading Bot",
+                description: "Automated trading system that reacts to economic news releases with predefined strategies.",
+                price: 500.00,
+                originalPrice: 2000.00,
+                category: "strategies",
+                image: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=400&h=300&fit=crop",
+                features: ["News feed integration", "Volatility filters", "Quick execution", "Risk management"]
+            },
+            {
+                id: 25,
+                name: "Price Action Scanner",
+                description: "Pure price action analysis tool identifying key patterns without lagging indicators.",
+                price: 500.00,
+                originalPrice: 2000.00,
+                category: "ninjatrader",
+                image: "https://images.unsplash.com/photo-1560520653-9e0e4c89eb11?w=400&h=300&fit=crop",
+                features: ["Pin bar detection", "Inside bar alerts", "Engulfing patterns", "Rejection wicks"]
+            },
+            {
+                id: 26,
+                name: "Pivot Point Calculator",
+                description: "Automatic pivot point calculation with multiple methods (Standard, Fibonacci, Camarilla).",
+                price: 500.00,
+                originalPrice: 2000.00,
+                category: "tradingview",
+                image: "https://images.unsplash.com/photo-1642790551116-18e150f248e5?w=400&h=300&fit=crop",
+                features: ["Multiple pivot types", "Auto plotting", "Support/resistance", "Target levels"]
+            },
+            {
+                id: 27,
+                name: "Arbitrage Hunter Pro",
+                description: "Cross-exchange arbitrage detection system for cryptocurrency and forex markets.",
+                price: 500.00,
+                originalPrice: 2000.00,
+                category: "strategies",
+                image: "https://images.unsplash.com/photo-1560472355-536de3962603?w=400&h=300&fit=crop",
+                features: ["Multi-exchange scanning", "Profit calculator", "Execution speed", "Fee optimization"]
+            },
+            {
+                id: 28,
+                name: "ATR Volatility Bands",
+                description: "Dynamic volatility bands based on Average True Range for adaptive trading ranges.",
+                price: 500.00,
+                originalPrice: 2000.00,
+                category: "ninjatrader",
+                image: "https://images.unsplash.com/photo-1554672408-730808814d3f?w=400&h=300&fit=crop",
+                features: ["ATR-based bands", "Volatility alerts", "Breakout signals", "Adaptive periods"]
+            },
+            {
+                id: 29,
+                name: "Wyckoff Accumulation Tool",
+                description: "Identifies Wyckoff accumulation and distribution phases with phase annotations.",
+                price: 500.00,
+                originalPrice: 2000.00,
+                category: "tradingview",
+                image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400&h=300&fit=crop",
+                features: ["Phase identification", "Volume analysis", "Spring detection", "Markup signals"]
+            },
+            {
+                id: 30,
+                name: "Options Flow Strategy",
+                description: "Tracks unusual options activity and generates trading signals based on smart money flow.",
+                price: 500.00,
+                originalPrice: 2000.00,
+                category: "strategies",
+                image: "https://images.unsplash.com/photo-1535320903710-d993d3d77d29?w=400&h=300&fit=crop",
+                features: ["Unusual activity alerts", "Put/call analysis", "Dark pool tracking", "Institutional flow"]
+            },
+            {
+                id: 31,
+                name: "Harmonic Pattern Finder",
+                description: "Automatically detects and plots harmonic patterns like Gartley, Butterfly, and Bat.",
+                price: 500.00,
+                originalPrice: 2000.00,
+                category: "ninjatrader",
+                image: "https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=400&h=300&fit=crop",
+                features: ["Gartley patterns", "Butterfly detection", "Bat patterns", "Target zones"]
+            },
+            {
+                id: 32,
+                name: "Moving Average Crossover Pro",
+                description: "Advanced MA crossover system with multiple timeframe confirmation and filters.",
+                price: 500.00,
+                originalPrice: 2000.00,
+                category: "tradingview",
+                image: "https://images.unsplash.com/photo-1640158615573-cd28feb1bf4e?w=400&h=300&fit=crop",
+                features: ["Multi-MA system", "Trend filters", "Volume confirmation", "Alert system"]
+            },
+            {
+                id: 33,
+                name: "Market Maker Model",
+                description: "Trading strategy based on market maker behavior and liquidity grab patterns.",
+                price: 500.00,
+                originalPrice: 2000.00,
+                category: "strategies",
+                image: "https://images.unsplash.com/photo-1579165466741-7f35e4755660?w=400&h=300&fit=crop",
+                features: ["Liquidity grabs", "Stop hunts", "Reversal zones", "Smart entries"]
+            },
+            {
+                id: 34,
+                name: "Correlation Matrix Tool",
+                description: "Real-time correlation analysis across multiple instruments for diversification.",
+                price: 500.00,
+                originalPrice: 2000.00,
+                category: "ninjatrader",
+                image: "https://images.unsplash.com/photo-1562577309-4932fdd64cd1?w=400&h=300&fit=crop",
+                features: ["Multi-asset correlation", "Heat map display", "Divergence alerts", "Portfolio analysis"]
+            },
+            {
+                id: 35,
+                name: "Supply Demand Zones Elite",
+                description: "Professional supply and demand zone identification with order flow confirmation.",
+                price: 500.00,
+                originalPrice: 2000.00,
+                category: "tradingview",
+                image: "https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=400&h=300&fit=crop",
+                features: ["Fresh zones", "Tested zones", "Zone strength", "Entry triggers"]
+            },
+            {
+                id: 36,
+                name: "Grid Trading System",
+                description: "Automated grid trading bot with dynamic grid spacing and risk management.",
+                price: 500.00,
+                originalPrice: 2000.00,
+                category: "strategies",
+                image: "https://images.unsplash.com/photo-1590650046871-92c887180603?w=400&h=300&fit=crop",
+                features: ["Dynamic grids", "Auto rebalancing", "Profit targets", "Loss limits"]
+            },
+            {
+                id: 37,
+                name: "Tick Volume Analysis",
+                description: "Advanced tick volume analysis for identifying institutional buying and selling pressure.",
+                price: 500.00,
+                originalPrice: 2000.00,
+                category: "ninjatrader",
+                image: "https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?w=400&h=300&fit=crop",
+                features: ["Tick delta", "Volume profile", "Pressure zones", "Climax detection"]
+            },
+            {
+                id: 38,
+                name: "Bollinger Band Squeeze",
+                description: "Specialized indicator for trading Bollinger Band squeeze breakouts with momentum.",
+                price: 500.00,
+                originalPrice: 2000.00,
+                category: "tradingview",
+                image: "https://images.unsplash.com/photo-1559526324-593bc073d938?w=400&h=300&fit=crop",
+                features: ["Squeeze detection", "Breakout signals", "Momentum filter", "Target calculation"]
+            },
+            {
+                id: 39,
+                name: "Pairs Trading Strategy",
+                description: "Statistical arbitrage strategy trading correlated pairs with mean reversion logic.",
+                price: 500.00,
+                originalPrice: 2000.00,
+                category: "strategies",
+                image: "https://images.unsplash.com/photo-1633158829875-e5316a358c6f?w=400&h=300&fit=crop",
+                features: ["Pair correlation", "Z-score analysis", "Entry/exit logic", "Risk parity"]
+            },
+            {
+                id: 40,
+                name: "Session High Low Indicator",
+                description: "Marks session highs/lows with automatic support/resistance levels for each trading session.",
+                price: 500.00,
+                originalPrice: 2000.00,
+                category: "ninjatrader",
+                image: "https://images.unsplash.com/photo-1590650153855-d9e808231d41?w=400&h=300&fit=crop",
+                features: ["Session markers", "Asian/London/NY", "Auto levels", "Break alerts"]
+            },
+            {
+                id: 41,
+                name: "Supertrend Indicator Pro",
+                description: "Enhanced Supertrend indicator with multiple timeframe analysis and custom ATR periods.",
+                price: 500.00,
+                originalPrice: 2000.00,
+                category: "tradingview",
+                image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400&h=300&fit=crop",
+                features: ["Multi-period Supertrend", "Trend strength", "Entry signals", "Stop loss levels"]
+            },
+            {
+                id: 42,
+                name: "Volatility Breakout System",
+                description: "Trades volatility expansion after consolidation with precise entry and exit rules.",
+                price: 500.00,
+                originalPrice: 2000.00,
+                category: "strategies",
+                image: "https://images.unsplash.com/photo-1579532537598-459ecdaf39cc?w=400&h=300&fit=crop",
+                features: ["Volatility detection", "Breakout confirmation", "Dynamic stops", "Profit scaling"]
+            },
+            {
+                id: 43,
+                name: "Market Profile Analytics",
+                description: "Complete market profile tool with TPO charts, value areas, and point of control.",
+                price: 500.00,
+                originalPrice: 2000.00,
+                category: "ninjatrader",
+                image: "https://images.unsplash.com/photo-1642790595390-6b21f9b2b45f?w=400&h=300&fit=crop",
+                features: ["TPO charts", "Value area", "POC levels", "Profile analysis"]
+            },
+            {
+                id: 44,
+                name: "KDJ Indicator Suite",
+                description: "Advanced KDJ stochastic indicator with divergence detection and overbought/oversold signals.",
+                price: 500.00,
+                originalPrice: 2000.00,
+                category: "tradingview",
+                image: "https://images.unsplash.com/photo-1613243555978-c155d7e29f18?w=400&h=300&fit=crop",
+                features: ["KDJ oscillator", "Divergence alerts", "Custom parameters", "Cross signals"]
+            },
+            {
+                id: 45,
+                name: "Smart Trailing Stop System",
+                description: "Intelligent trailing stop strategy that adapts to market volatility and trend strength.",
+                price: 500.00,
+                originalPrice: 2000.00,
+                category: "strategies",
+                image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=400&h=300&fit=crop",
+                features: ["Adaptive trailing", "ATR-based stops", "Breakeven logic", "Partial exits"]
+            },
+            {
+                id: 46,
+                name: "Cumulative Delta Volume",
+                description: "Tracks cumulative delta volume to show buying and selling pressure over time.",
+                price: 500.00,
+                originalPrice: 2000.00,
+                category: "ninjatrader",
+                image: "https://images.unsplash.com/photo-1642543492849-56a9b9b42d3b?w=400&h=300&fit=crop",
+                features: ["Delta accumulation", "Divergence detection", "Pressure visualization", "Reset levels"]
+            },
+            {
+                id: 47,
+                name: "Momentum Wave Indicator",
+                description: "Identifies momentum waves and cycles for timing entries at wave lows and highs.",
+                price: 500.00,
+                originalPrice: 2000.00,
+                category: "tradingview",
+                image: "https://images.unsplash.com/photo-1620321023374-d1a68fbc720d?w=400&h=300&fit=crop",
+                features: ["Wave detection", "Cycle analysis", "Peak/trough alerts", "Momentum gauge"]
+            },
+            {
+                id: 48,
+                name: "DCA Dollar Cost Averaging",
+                description: "Automated dollar-cost averaging strategy with customizable intervals and amounts.",
+                price: 500.00,
+                originalPrice: 2000.00,
+                category: "strategies",
+                image: "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=400&h=300&fit=crop",
+                features: ["Auto DCA", "Custom intervals", "Position tracking", "Average price"]
+            },
+            {
+                id: 49,
+                name: "Accumulation Distribution Line",
+                description: "Advanced A/D line indicator showing money flow into and out of securities.",
+                price: 500.00,
+                originalPrice: 2000.00,
+                category: "ninjatrader",
+                image: "https://images.unsplash.com/photo-1543286386-2e659306cd6c?w=400&h=300&fit=crop",
+                features: ["Money flow tracking", "Divergence scanner", "Trend confirmation", "Volume weighted"]
+            },
+            {
+                id: 50,
+                name: "Heikin Ashi Smoothed",
+                description: "Smoothed Heikin Ashi candles with trend filter for clearer trend identification.",
+                price: 500.00,
+                originalPrice: 2000.00,
+                category: "tradingview",
+                image: "https://images.unsplash.com/photo-1569025690938-a00729c9e1f9?w=400&h=300&fit=crop",
+                features: ["Smoothed candles", "Trend clarity", "Noise reduction", "Color coding"]
+            },
+            {
+                id: 51,
+                name: "Martingale Recovery System",
+                description: "Advanced martingale strategy with safety features and maximum loss limits.",
+                price: 500.00,
+                originalPrice: 2000.00,
+                category: "strategies",
+                image: "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=400&h=300&fit=crop",
+                features: ["Position multiplier", "Max loss limit", "Recovery targets", "Risk calculator"]
+            },
+            {
+                id: 52,
+                name: "Chaikin Money Flow",
+                description: "Professional Chaikin Money Flow indicator measuring buying and selling pressure.",
+                price: 500.00,
+                originalPrice: 2000.00,
+                category: "ninjatrader",
+                image: "https://images.unsplash.com/photo-1639322537504-6427a16b0a28?w=400&h=300&fit=crop",
+                features: ["CMF oscillator", "Zero line cross", "Divergence detection", "Trend confirmation"]
+            },
+            {
+                id: 53,
+                name: "Keltner Channel Pro",
+                description: "Enhanced Keltner Channels with multiple ATR multipliers and breakout signals.",
+                price: 500.00,
+                originalPrice: 2000.00,
+                category: "tradingview",
+                image: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=400&h=300&fit=crop",
+                features: ["Multi-channel display", "Breakout alerts", "Squeeze detection", "Custom ATR"]
+            },
+            {
+                id: 54,
+                name: "Statistical Arbitrage Bot",
+                description: "Quantitative trading system exploiting statistical inefficiencies across markets.",
+                price: 500.00,
+                originalPrice: 2000.00,
+                category: "strategies",
+                image: "https://images.unsplash.com/photo-1560520653-9e0e4c89eb11?w=400&h=300&fit=crop",
+                features: ["Statistical models", "Pair selection", "Auto execution", "Performance tracking"]
+            },
+            {
+                id: 55,
+                name: "Relative Volume Indicator",
+                description: "Shows current volume relative to average volume for spotting unusual activity.",
+                price: 500.00,
+                originalPrice: 2000.00,
+                category: "ninjatrader",
+                image: "https://images.unsplash.com/photo-1642790551116-18e150f248e5?w=400&h=300&fit=crop",
+                features: ["RVOL calculation", "Volume spikes", "Comparison bars", "Alert thresholds"]
+            },
+            {
+                id: 56,
+                name: "Adaptive Moving Average",
+                description: "Self-adjusting moving average that adapts to market volatility and trending conditions.",
+                price: 500.00,
+                originalPrice: 2000.00,
+                category: "tradingview",
+                image: "https://images.unsplash.com/photo-1560472355-536de3962603?w=400&h=300&fit=crop",
+                features: ["Auto adaptation", "Volatility adjustment", "Trend detection", "Dynamic period"]
+            },
+            {
+                id: 57,
+                name: "Range Trading Expert",
+                description: "Specialized strategy for trading range-bound markets with support/resistance bounces.",
+                price: 500.00,
+                originalPrice: 2000.00,
+                category: "strategies",
+                image: "https://images.unsplash.com/photo-1554672408-730808814d3f?w=400&h=300&fit=crop",
+                features: ["Range detection", "Bounce signals", "Breakout filter", "Mean reversion"]
+            },
+            {
+                id: 58,
+                name: "Williams %R Elite",
+                description: "Enhanced Williams %R oscillator with divergence detection and multi-timeframe analysis.",
+                price: 500.00,
+                originalPrice: 2000.00,
+                category: "ninjatrader",
+                image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400&h=300&fit=crop",
+                features: ["%R oscillator", "Overbought/oversold", "Divergence scanner", "Custom levels"]
+            },
+            {
+                id: 59,
+                name: "Donchian Channel System",
+                description: "Complete Donchian Channel breakout system with trend following logic.",
+                price: 500.00,
+                originalPrice: 2000.00,
+                category: "tradingview",
+                image: "https://images.unsplash.com/photo-1535320903710-d993d3d77d29?w=400&h=300&fit=crop",
+                features: ["Channel breakouts", "Trend following", "Entry signals", "Exit rules"]
+            },
+            {
+                id: 60,
+                name: "Machine Learning Predictor",
+                description: "AI-powered prediction system using machine learning algorithms for price forecasting.",
+                price: 500.00,
+                originalPrice: 2000.00,
+                category: "strategies",
+                image: "https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=400&h=300&fit=crop",
+                features: ["ML algorithms", "Price forecasting", "Pattern recognition", "Confidence scores"]
+            },
+            {
+                id: 61,
+                name: "Beginner Trading Course",
+                description: "Complete introduction to trading for newcomers. Learn basics of markets, platforms, and fundamental concepts.",
+                price: 2000.00,
+                originalPrice: 3000.00,
+                category: "education",
+                image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop",
+                features: ["Introduction to trading", "Trading platforms overview", "Types of trading (stocks, forex, crypto)", "Basic chart reading", "Risk management fundamentals", "Trading psychology", "1 Premium Indicator included FREE"]
+            },
+            {
+                id: 62,
+                name: "Experienced Trader Course",
+                description: "Advanced training for traders with some experience. Includes 5 premium indicators and strategy development.",
+                price: 4000.00,
+                originalPrice: 6000.00,
+                category: "education",
+                image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400&h=300&fit=crop",
+                features: ["Advanced technical analysis", "5 premium indicators included FREE", "Strategy development workshop", "Backtesting techniques", "Portfolio management", "Market timing strategies"]
+            },
+            {
+                id: 63,
+                name: "Advanced Trader Masterclass",
+                description: "Elite training for professional traders. Includes market analysis, 5 indicators, and 2 custom indicators built to your style.",
+                price: 6000.00,
+                originalPrice: 9000.00,
+                category: "education",
+                image: "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=400&h=300&fit=crop",
+                features: ["Professional market analysis", "5 premium indicators included", "2 custom indicators (built to your style) FREE", "Institutional trading techniques", "Advanced risk management", "Live trading sessions", "Personal mentorship"]
+            },
+            {
+                id: 64,
+                name: "Free Trading Fundamentals",
+                description: "Get started with trading basics absolutely free. Learn essential concepts and build your foundation.",
+                price: 0.00,
+                originalPrice: 0.00,
+                category: "education",
+                image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop",
+                features: ["Basic trading concepts", "Market understanding", "Risk management basics", "Trading terminology", "Getting started guide", "Free resources access"]
+            }
+        ];
+
+        // Cart State
+        let cart = JSON.parse(localStorage.getItem('tradingCart')) || [];
+        let promoCodeApplied = false;
+        let currentPromoCode = '';
+        
+        // DOM Elements
+        const cartIcon = document.getElementById('cartIcon');
+        const cartCount = document.getElementById('cartCount');
+        const cartSidebar = document.getElementById('cartSidebar');
+        const closeCart = document.getElementById('closeCart');
+        const overlay = document.getElementById('overlay');
+        const cartItems = document.getElementById('cartItems');
+        const emptyCart = document.getElementById('emptyCart');
+        const cartTotal = document.getElementById('cartTotal');
+        const checkoutBtn = document.getElementById('checkoutBtn');
+        const productsGrid = document.getElementById('productsGrid');
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const orderSummary = document.getElementById('orderSummary');
+        const orderTotal = document.getElementById('orderTotal');
+        const paypalCheckoutBtn = document.getElementById('paypalCheckoutBtn');
+        const standardCheckoutBtn = document.getElementById('standardCheckoutBtn');
+        const paymentOptions = document.getElementById('paymentOptions');
+        const paymentOptionElements = document.querySelectorAll('.payment-option');
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            renderProducts();
+            updateCartCount();
+            updateCartDisplay();
+            setupEventListeners();
+            
+            // Payment button active by default
+            paypalCheckoutBtn.classList.add('active');
+            standardCheckoutBtn.style.display = 'none';
+        });
+        
+        // Render Products
+        function renderProducts(filter = 'all') {
+            productsGrid.innerHTML = '';
+            
+            const filteredProducts = filter === 'all' 
+                ? products 
+                : products.filter(product => product.category === filter);
+            
+            filteredProducts.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.setAttribute('data-category', product.category);
+
+                // Use local image if available, else fallback to Unsplash
+                let imgSrc = product.image;
+                if (imgSrc && imgSrc.startsWith('images/')) {
+                    imgSrc = imgSrc;
+                } else if (imgSrc && imgSrc.includes('unsplash.com')) {
+                    imgSrc = product.image;
+                }
+
+                productCard.innerHTML = `
+                    <div class="product-badge ${product.category === 'ninjatrader' ? 'badge-ninjatrader' : product.category === 'tradingview' ? 'badge-tradingview' : 'badge-ninjatrader'}">
+                        ${product.category === 'ninjatrader' ? 'NinjaTrader' : product.category === 'tradingview' ? 'TradingView' : 'Strategy'}
+                    </div>
+                    <div class="product-img" style="padding:0;">
+                        <img src="${imgSrc}" alt="${product.name} chart" style="width:100%;height:200px;object-fit:cover;display:block;border-radius:0;" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400&h=300&fit=crop';">
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">${product.name}</h3>
+                        <p class="product-description">${product.description.replace(/\(ਖਰੀਦੇ\/ਵੇਚੇ\)/g, '<span style="color: var(--success); font-weight: 900; animation: blink 1s infinite;">(ਖਰੀਦੇ/ਵੇਚੇ)</span>')}</p>
+                        <ul class="product-features">
+                            ${product.features.map(feature => `<li><i class="fas fa-check-circle"></i> ${feature.replace(/FREE/g, '<span style="animation: blink 1s infinite; color: var(--success); font-weight: 900;">FREE</span>')}</li>`).join('')}
+                        </ul>
+                        <div class="product-footer">
+                            <div class="product-price">
+                                ${product.price === 0.00 ? 'FREE' : `$${product.price.toFixed(2)}`}
+                                ${product.price !== 0.00 ? `<span>$${product.originalPrice.toFixed(2)}</span>` : ''}
+                            </div>
+                            <div class="product-buttons">
+                                ${product.price === 0.00 ? 
+                                    `<button class="enroll-btn" onclick="document.getElementById('checkout').scrollIntoView({behavior: 'smooth'});">
+                                        Enroll Now
+                                    </button>` :
+                                    `<button class="buy-now" data-id="${product.id}">
+                                        Buy
+                                    </button>
+                                    <button class="promo-code-btn" onclick="addToCart(${product.id}); document.getElementById('checkout').scrollIntoView({behavior: 'smooth'});">
+                                        Promo Code
+                                    </button>`
+                                }
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                productsGrid.appendChild(productCard);
+            });
+            
+            // Add event listeners to buy-now buttons
+            document.querySelectorAll('.buy-now').forEach(button => {
+                button.addEventListener('click', function() {
+                    const productId = parseInt(this.getAttribute('data-id'));
+                    let paypalLink = 'https://www.paypal.com/ncp/payment/8UVF7BBS2EHUY'; // Default link
+                    
+                    // Specific links for education courses
+                    if (productId === 61) {
+                        paypalLink = 'https://www.paypal.com/ncp/payment/3WQCTXJ7C4S4Q'; // Beginner Trading Course
+                    } else if (productId === 62) {
+                        paypalLink = 'https://www.paypal.com/ncp/payment/V7RK99LTB3CH2'; // Experienced Trader Course
+                    } else if (productId === 63) {
+                        paypalLink = 'https://www.paypal.com/ncp/payment/VBSRTPGDPZD6J'; // Advanced Trader Masterclass
+                    }
+                    
+                    window.location.href = paypalLink;
+                });
+            });
+        }
+        
+        // Promo Code Validation Function
+        function validatePromoCode(code) {
+            // Format: 3 uppercase letters + 1 special character + 2 numbers = 6 characters
+            const promoRegex = /^[A-Z]{3}[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]{1}[0-9]{2}$/;
+            return promoRegex.test(code);
+        }
+        
+        function applyPromoCode() {
+            const promoInput = document.getElementById('promoCode');
+            const promoMessage = document.getElementById('promoMessage');
+            const code = promoInput.value.trim().toUpperCase();
+            
+            if (!code) {
+                promoMessage.style.display = 'block';
+                promoMessage.style.color = 'var(--warning)';
+                promoMessage.innerHTML = '<i class="fas fa-exclamation-circle"></i> Please enter a promo code';
+                return;
+            }
+            
+            if (validatePromoCode(code)) {
+                promoCodeApplied = true;
+                currentPromoCode = code;
+                promoMessage.style.display = 'block';
+                promoMessage.style.color = 'var(--success)';
+                promoMessage.innerHTML = '<i class="fas fa-check-circle"></i> Promo code applied! 50% discount activated';
+                promoInput.disabled = true;
+                document.getElementById('applyPromoBtn').textContent = 'Remove';
+                document.getElementById('applyPromoBtn').style.backgroundColor = 'var(--danger)';
+                
+                // Update totals
+                updateCartDisplay();
+                updateOrderSummary();
+            } else {
+                promoMessage.style.display = 'block';
+                promoMessage.style.color = 'var(--danger)';
+                promoMessage.innerHTML = '<i class="fas fa-times-circle"></i> Invalid promo code format (e.g., ABC#12)';
+                promoCodeApplied = false;
+                currentPromoCode = '';
+            }
+        }
+        
+        function removePromoCode() {
+            promoCodeApplied = false;
+            currentPromoCode = '';
+            const promoInput = document.getElementById('promoCode');
+            const promoMessage = document.getElementById('promoMessage');
+            
+            promoInput.value = '';
+            promoInput.disabled = false;
+            promoMessage.style.display = 'none';
+            document.getElementById('applyPromoBtn').textContent = 'Apply';
+            document.getElementById('applyPromoBtn').style.backgroundColor = '';
+            
+            // Update totals
+            updateCartDisplay();
+            updateOrderSummary();
+        }
+        
+        // Filter Products
+        filterBtns.forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons
+                filterBtns.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                this.classList.add('active');
+                // Filter products
+                const filter = this.getAttribute('data-filter');
+                renderProducts(filter);
+            });
+        });
+        
+        // Cart Functions
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            
+            // Clear cart and add only the new item (limit to 1 item)
+            cart = [{
+                ...product,
+                quantity: 1
+            }];
+            
+            // Update cart in localStorage
+            localStorage.setItem('tradingCart', JSON.stringify(cart));
+            
+            // Update UI
+            updateCartCount();
+            updateCartDisplay();
+            
+            // Show notification
+            showNotification(`${product.name} added to cart! (Previous items removed - 1 item per purchase)`);
+        }
+        
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            
+            // Update cart in localStorage
+            localStorage.setItem('tradingCart', JSON.stringify(cart));
+            
+            // Update UI
+            updateCartCount();
+            updateCartDisplay();
+        }
+        
+        function updateCartCount() {
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCount.textContent = totalItems;
+        }
+        
+        function updateCartDisplay() {
+            // Update cart sidebar
+            cartItems.innerHTML = '';
+            
+            if (cart.length === 0) {
+                emptyCart.style.display = 'block';
+                cartTotal.textContent = '$0.00';
+                checkoutBtn.style.display = 'none';
+                return;
+            }
+            
+            emptyCart.style.display = 'none';
+            checkoutBtn.style.display = 'block';
+            
+            let total = 0;
+            
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                
+                const cartItem = document.createElement('div');
+                cartItem.className = 'cart-item';
+                cartItem.innerHTML = `
+                    <div class="cart-item-img">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="cart-item-details">
+                        <div class="cart-item-title">${item.name}</div>
+                        <div class="cart-item-price">$${item.price.toFixed(2)} × ${item.quantity}</div>
+                    </div>
+                    <button class="cart-item-remove" data-id="${item.id}">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                `;
+                
+                cartItems.appendChild(cartItem);
+            });
+            
+            // Apply promo discount if active
+            const finalTotal = promoCodeApplied ? total * 0.5 : total;
+            
+            if (promoCodeApplied) {
+                cartTotal.innerHTML = `
+                    <div style="text-decoration: line-through; color: var(--gray); font-size: 1rem;">$${total.toFixed(2)}</div>
+                    <div style="color: var(--success);">$${finalTotal.toFixed(2)}</div>
+                `;
+            } else {
+                cartTotal.textContent = `$${finalTotal.toFixed(2)}`;
+            }
+            
+            // Update PayPal button text and payment notice
+            updatePayPalButton(finalTotal);
+            
+            // Add event listeners to remove buttons
+            document.querySelectorAll('.cart-item-remove').forEach(button => {
+                button.addEventListener('click', function() {
+                    const productId = parseInt(this.getAttribute('data-id'));
+                    removeFromCart(productId);
+                });
+            });
+            
+            // Update order summary in checkout
+            updateOrderSummary();
+        }
+        
+        function updateOrderSummary() {
+            orderSummary.innerHTML = '';
+            
+            if (cart.length === 0) {
+                orderSummary.innerHTML = '<p style="color: var(--gray); text-align: center;">No items in cart</p>';
+                orderTotal.textContent = '$0.00';
+                
+                // Disable payment buttons
+                paypalCheckoutBtn.classList.remove('active');
+                standardCheckoutBtn.style.display = 'none';
+                return;
+            }
+            
+            let total = 0;
+            
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                
+                const orderItem = document.createElement('div');
+                orderItem.className = 'cart-item';
+                orderItem.style.marginBottom = '15px';
+                orderItem.innerHTML = `
+                    <div class="cart-item-details" style="flex: 1;">
+                        <div class="cart-item-title">${item.name} × ${item.quantity}</div>
+                    </div>
+                    <div class="cart-item-price">$${itemTotal.toFixed(2)}</div>
+                `;
+                
+                orderSummary.appendChild(orderItem);
+            });
+            
+            // Apply promo discount if active
+            const finalTotal = promoCodeApplied ? total * 0.5 : total;
+            
+            if (promoCodeApplied) {
+                orderTotal.innerHTML = `
+                    <span style="text-decoration: line-through; color: var(--gray); font-size: 1rem; margin-right: 10px;">$${total.toFixed(2)}</span>
+                    <span style="color: var(--success); font-size: 1.5rem;">$${finalTotal.toFixed(2)}</span>
+                    <span style="color: var(--success); font-size: 0.9rem; margin-left: 10px;">(50% OFF)</span>
+                `;
+            } else {
+                orderTotal.textContent = `$${finalTotal.toFixed(2)}`;
+            }
+            
+            // Update PayPal button text and payment notice
+            updatePayPalButton(finalTotal);
+            
+            // Payment options always visible
+            paymentOptions.style.display = 'flex';
+            updatePaymentButton();
+        }
+        
+        function updatePaymentButton() {
+            const activeMethod = document.querySelector('.payment-option.active').getAttribute('data-method');
+            const paypalContainer = document.getElementById('paypal-button-container');
+            
+            if (activeMethod === 'paypal') {
+                standardCheckoutBtn.style.display = 'none';
+                if (paypalContainer) {
+                    paypalContainer.style.display = 'block';
+                }
+            } else {
+                if (paypalContainer) {
+                    paypalContainer.style.display = 'none';
+                }
+                standardCheckoutBtn.style.display = 'block';
+            }
+        }
+        
+        function updatePayPalButton(amount) {
+            const paymentAmount = document.getElementById('paymentAmount');
+            const paymentAmountNotice = document.getElementById('paymentAmountNotice');
+            
+            if (paymentAmount) {
+                paymentAmount.textContent = `$${amount.toFixed(2)}`;
+            }
+            
+            // Re-render PayPal button with new amount
+            if (amount > 0) {
+                renderPayPalButton();
+            }
+        }
+        
+        function renderPayPalButton() {
+            const container = document.getElementById('paypal-button-container');
+            if (!container) return;
+            
+            // Clear existing buttons
+            container.innerHTML = '';
+            
+            // Calculate total amount
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const finalTotal = promoCodeApplied ? total * 0.5 : total;
+            
+            if (finalTotal <= 0) {
+                container.innerHTML = '<p style="text-align: center; color: var(--gray);">Add items to cart to enable checkout</p>';
+                return;
+            }
+            
+            // Render PayPal button
+            paypal.Buttons({
+                style: {
+                    layout: 'vertical',
+                    color: 'blue',
+                    shape: 'rect',
+                    label: 'paypal',
+                    height: 50
+                },
+                createOrder: function(data, actions) {
+                    return actions.order.create({
+                        purchase_units: [{
+                            amount: {
+                                value: finalTotal.toFixed(2),
+                                currency_code: 'USD'
+                            },
+                            description: 'Nextdraw traders Order'
+                        }]
+                    });
+                },
+                onApprove: function(data, actions) {
+                    return actions.order.capture().then(function(details) {
+                        showNotification('Payment completed successfully! Order ID: ' + details.id);
+                        // You can add additional order processing here
+                        // Clear cart after successful payment
+                        setTimeout(function() {
+                            cart = [];
+                            localStorage.setItem('tradingCart', JSON.stringify(cart));
+                            updateCartCount();
+                            updateCartDisplay();
+                        }, 2000);
+                    });
+                },
+                onError: function(err) {
+                    showNotification('Payment failed. Please try again.');
+                    console.error('PayPal error:', err);
+                }
+            }).render('#paypal-button-container');
+            
+            paypalButtonRendered = true;
+        }
+        
+        function showNotification(message) {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background-color: var(--success);
+                color: white;
+                padding: 15px 25px;
+                border-radius: 8px;
+                font-weight: 600;
+                z-index: 2000;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+                animation: slideIn 0.3s ease, fadeOut 0.3s ease 2.7s forwards;
+            `;
+            
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            // Remove notification after 3 seconds
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.parentNode.removeChild(notification);
+                }
+            }, 3000);
+            
+            // Add CSS animations
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes slideIn {
+                    from { transform: translateX(100%); opacity: 0; }
+                    to { transform: translateX(0); opacity: 1; }
+                }
+                @keyframes fadeOut {
+                    from { opacity: 1; }
+                    to { opacity: 0; }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+        
+        function setupEventListeners() {
+            // Custom development form submission
+            const customDevForm = document.getElementById('customDevForm');
+            if (customDevForm) {
+                customDevForm.addEventListener('submit', function(e) {
+                    showNotification('Your custom development request has been submitted! We\'ll contact you within 48 hours.');
+                    
+                    // Clear form after submission
+                    setTimeout(function() {
+                        customDevForm.reset();
+                    }, 500);
+                });
+            }
+            
+            // Customer form submission
+            const customerForm = document.getElementById('customerForm');
+            if (customerForm) {
+                customerForm.addEventListener('submit', function(e) {
+                    // Update hidden fields with order details before submission
+                    const orderDetails = cart.map(item => 
+                        `${item.name} x${item.quantity} - $${(item.price * item.quantity).toFixed(2)}`
+                    ).join(', ');
+                    
+                    const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                    const finalTotal = promoCodeApplied ? total * 0.5 : total;
+                    
+                    document.getElementById('orderDetailsHidden').value = orderDetails || 'No items in cart';
+                    document.getElementById('orderTotalHidden').value = promoCodeApplied ? 
+                        `$${finalTotal.toFixed(2)} (Original: $${total.toFixed(2)} - 50% discount applied)` : 
+                        `$${finalTotal.toFixed(2)}`;
+                    document.getElementById('promoCodeUsed').value = promoCodeApplied ? currentPromoCode : '';
+                    
+                    // Show success message and enable payment
+                    showNotification('Your information has been saved! You can now proceed to payment.');
+                    paypalCheckoutBtn.classList.add('active');
+                    
+                    // Clear form and reset promo after a short delay (to allow form submission)
+                    setTimeout(function() {
+                        customerForm.reset();
+                        removePromoCode();
+                    }, 500);
+                });
+            }
+            
+            // Cart toggle
+            cartIcon.addEventListener('click', function() {
+                cartSidebar.classList.add('active');
+                overlay.classList.add('active');
+            });
+            
+            closeCart.addEventListener('click', function() {
+                cartSidebar.classList.remove('active');
+                overlay.classList.remove('active');
+            });
+            
+            overlay.addEventListener('click', function() {
+                cartSidebar.classList.remove('active');
+                overlay.classList.remove('active');
+            });
+            
+            // Checkout button in cart
+            checkoutBtn.addEventListener('click', function() {
+                cartSidebar.classList.remove('active');
+                overlay.classList.remove('active');
+                
+                // Smooth scroll to checkout
+                document.querySelector('#checkout').scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Promo code button
+            const applyPromoBtn = document.getElementById('applyPromoBtn');
+            if (applyPromoBtn) {
+                applyPromoBtn.addEventListener('click', function(e) {
+                    e.preventDefault(); // Prevent form submission
+                    e.stopPropagation();
+                    if (this.textContent === 'Apply') {
+                        applyPromoCode();
+                    } else {
+                        removePromoCode();
+                    }
+                });
+            }
+            
+            // Allow Enter key to apply promo
+            const promoInput = document.getElementById('promoCode');
+            if (promoInput) {
+                promoInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        applyPromoCode();
+                    }
+                });
+                
+                // Also prevent form submission on any key in promo field
+                promoInput.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        e.stopPropagation();
+                    }
+                });
+            }
+            
+            // Payment option selection
+            paymentOptionElements.forEach(option => {
+                option.addEventListener('click', function() {
+                    // Remove active class from all options
+                    paymentOptionElements.forEach(opt => opt.classList.remove('active'));
+                    // Add active class to clicked option
+                    this.classList.add('active');
+                    // Update payment button
+                    updatePaymentButton();
+                });
+            });
+            
+            // Standard checkout button click - now redirects to PayPal
+            if (standardCheckoutBtn) {
+                standardCheckoutBtn.addEventListener('click', function(e) {
+                    // Link will handle redirect, no need for additional handling
+                });
+            }
+            
+            // Mobile menu toggle
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const navLinks = document.querySelector('.nav-links');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+                
+                if (navLinks.style.display === 'flex') {
+                    navLinks.style.cssText = `
+                        display: flex;
+                        flex-direction: column;
+                        position: absolute;
+                        top: 100%;
+                        left: 0;
+                        width: 100%;
+                        background-color: var(--dark);
+                        padding: 30px;
+                        border-top: 1px solid var(--border);
+                        gap: 20px;
+                    `;
+                }
+            });
+            
+            // Close mobile menu on resize
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 768) {
+                    navLinks.style.display = '';
+                }
+            });
+        }
+    </script>
 </body>
 </html>
