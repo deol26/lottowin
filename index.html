@@ -384,6 +384,12 @@
             align-items: center;
         }
 
+        .product-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
         .product-price {
             font-size: 1.8rem;
             font-weight: 800;
@@ -883,6 +889,10 @@
                 width: 100%;
                 right: -100%;
             }
+
+            #partner div[style*="grid-template-columns: 1fr 1fr"] {
+                grid-template-columns: 1fr !important;
+            }
         }
 
         @media (max-width: 576px) {
@@ -997,11 +1007,12 @@
                 </a>
                 
                 <div class="nav-links">
-                    <a href="#" class="active">Home</a>
+                    <a href="#products" class="active">Home</a>
                     <a href="#products">Products</a>
-                    <a href="#strategies">Strategies</a>
+                    <a href="#products" data-filter="strategies" class="strategies-link">Strategies</a>
                     <a href="#pricing">Pricing</a>
                     <a href="#testimonials">Testimonials</a>
+                    <a href="#partner">Partner</a>
                     <div class="cart-icon" id="cartIcon">
                         <i class="fas fa-shopping-cart"></i>
                         <span class="cart-count" id="cartCount">0</span>
@@ -1015,20 +1026,8 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <h1>Professional Trading Tools for <span class="highlight">NinjaTrader & TradingView</span></h1>
-            <p>Advanced indicators, strategies, and tools designed by professional traders to give you an edge in the markets. Backtested, optimized, and ready for deployment.</p>
-            <div class="cta-buttons">
-                <a href="#products" class="btn btn-primary">Explore Products</a>
-                <a href="#strategies" class="btn btn-secondary">View Strategies</a>
-            </div>
-        </div>
-    </section>
-
     <!-- Products Section -->
-    <section class="section" id="products">
+    <section class="section" id="products" style="padding-top: 80px;">
         <div class="container">
             <h2 class="section-title">Premium Trading Tools</h2>
             <p class="section-subtitle">Choose from our collection of advanced indicators and automated strategies for NinjaTrader and TradingView platforms.</p>
@@ -1039,6 +1038,11 @@
                 <button class="filter-btn" data-filter="tradingview">TradingView</button>
                 <button class="filter-btn" data-filter="strategies">Strategies</button>
                 <button class="filter-btn" data-filter="education">Education <small style="animation: blink 1s infinite; color: var(--success); font-weight: bold;">(new)</small></button>
+                <a href="#partner" class="filter-btn" style="text-decoration: none;">Partner with us <small style="animation: blink 1s infinite; color: var(--success); font-weight: bold;">(new)</small></a>
+                <a href="#custom" class="filter-btn" style="text-decoration: none; display: flex; flex-direction: column; align-items: center; gap: 2px;">
+                    <span>BUILD YOUR OWN <small style="animation: blink 1s infinite; color: var(--success); font-weight: bold;">(new)</small></span>
+                    <small style="font-size: 0.65rem; opacity: 0.7; font-weight: 400;">strategies, indicators, Bars type</small>
+                </a>
             </div>
             
             <div class="products-grid" id="productsGrid">
@@ -1117,7 +1121,7 @@
                 </form>
                 
                 <!-- PayPal Checkout Button -->
-                <a href="https://www.paypal.com/ncp/payment/8UVF7BBS2EHUY" target="_blank" class="paypal-btn active" id="paypalCheckoutBtn">
+                <a href="https://www.paypal.com/ncp/payment/8UVF7BBS2EHUY" target="_blank" class="paypal-btn" id="paypalCheckoutBtn">
                     <i class="fab fa-paypal"></i> Complete Payment with PayPal ($500.00)
                 </a>
                 
@@ -1131,8 +1135,8 @@
                 </div>
                 
                 <div style="text-align: center; margin: 30px 0; padding: 20px; background-color: rgba(37, 99, 235, 0.1); border-radius: 8px; border: 1px solid var(--primary);">
-                    <h4 style="margin-bottom: 10px; color: var(--primary);">Complete Your Information Above</h4>
-                    <p style="color: var(--gray); font-size: 0.95rem;">Fill out your details and click "Save My Information" to enable payment options</p>
+                    <h4 style="margin-bottom: 10px; color: var(--primary);"><i class="fas fa-info-circle"></i> Complete Your Information Above</h4>
+                    <p style="color: var(--gray); font-size: 0.95rem;">Fill out your details and click "Save My Information" to enable the PayPal payment button below</p>
                 </div>
                 
                 <!-- Payment Options -->
@@ -1263,6 +1267,66 @@
                         <li style="margin-bottom: 8px;">Upon agreement, we start development</li>
                         <li>Receive your custom tool with documentation and support</li>
                     </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="section" id="pricing" style="background-color: var(--dark);">
+        <div class="container">
+            <h2 class="section-title">Pricing</h2>
+            <p class="section-subtitle">All our products are available at special discounted prices. Get professional trading tools at 50% off the original price.</p>
+            
+            <div style="max-width: 900px; margin: 0 auto;">
+                <div class="card" style="margin-bottom: 30px;">
+                    <h3 style="font-size: 1.8rem; margin-bottom: 20px; color: var(--primary); text-align: center;"><i class="fas fa-tag"></i> Product Pricing</h3>
+                    
+                    <div style="display: grid; gap: 15px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px; background-color: rgba(37, 99, 235, 0.05); border-radius: 8px; border: 1px solid var(--border);">
+                            <div>
+                                <strong style="color: var(--light);">All Individual Products</strong>
+                                <p style="color: var(--gray); font-size: 0.9rem; margin-top: 5px;">Indicators, Strategies, and Tools</p>
+                            </div>
+                            <div style="text-align: right;">
+                                <div style="color: var(--gray); text-decoration: line-through; font-size: 0.9rem;">$2,000.00</div>
+                                <div style="color: var(--success); font-size: 1.5rem; font-weight: 800;">$1,000.00</div>
+                                <div style="color: var(--gray); font-size: 0.8rem;">50% OFF</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 30px; padding: 20px; background-color: rgba(37, 99, 235, 0.1); border-radius: 8px; border: 1px solid var(--primary);">
+                        <h4 style="color: var(--primary); margin-bottom: 15px;"><i class="fas fa-info-circle"></i> What's Included</h4>
+                        <ul style="color: var(--light); list-style: none; padding: 0;">
+                            <li style="margin-bottom: 10px;"><i class="fas fa-check" style="color: var(--success); margin-right: 10px;"></i> <strong>55+ Premium Products</strong> - Access to any of our professional indicators and strategies</li>
+                            <li style="margin-bottom: 10px;"><i class="fas fa-check" style="color: var(--success); margin-right: 10px;"></i> <strong>NinjaTrader 8</strong> and <strong>TradingView</strong> compatible</li>
+                            <li style="margin-bottom: 10px;"><i class="fas fa-check" style="color: var(--success); margin-right: 10px;"></i> <strong>Lifetime License</strong> - One-time payment, no subscriptions</li>
+                            <li style="margin-bottom: 10px;"><i class="fas fa-check" style="color: var(--success); margin-right: 10px;"></i> <strong>Free Updates</strong> - Get all future improvements and bug fixes</li>
+                            <li style="margin-bottom: 10px;"><i class="fas fa-check" style="color: var(--success); margin-right: 10px;"></i> <strong>Documentation & Support</strong> - Complete setup guides and email support</li>
+                            <li style="margin-bottom: 10px;"><i class="fas fa-check" style="color: var(--success); margin-right: 10px;"></i> <strong>Backtested & Optimized</strong> - All tools are thoroughly tested</li>
+                        </ul>
+                    </div>
+
+                    <div style="margin-top: 30px; padding: 20px; background-color: rgba(16, 185, 129, 0.1); border-radius: 8px; border: 1px solid var(--success);">
+                        <h4 style="color: var(--success); margin-bottom: 15px;"><i class="fas fa-gift"></i> Special Offers</h4>
+                        <ul style="color: var(--light); list-style: none; padding: 0;">
+                            <li style="margin-bottom: 10px;"><i class="fas fa-star" style="color: var(--warning); margin-right: 10px;"></i> <strong>Bundle Deals:</strong> Buy multiple products and save even more</li>
+                            <li style="margin-bottom: 10px;"><i class="fas fa-star" style="color: var(--warning); margin-right: 10px;"></i> <strong>Custom Development:</strong> Need something specific? Request a custom tool</li>
+                            <li style="margin-bottom: 10px;"><i class="fas fa-star" style="color: var(--warning); margin-right: 10px;"></i> <strong>Partner Discounts:</strong> Join our reseller program for special pricing</li>
+                        </ul>
+                    </div>
+
+                    <div style="text-align: center; margin-top: 30px;">
+                        <a href="#products" class="btn btn-primary" style="font-size: 1.2rem; padding: 16px 40px;">
+                            <i class="fas fa-shopping-cart"></i> Browse All Products
+                        </a>
+                    </div>
+                </div>
+
+                <div style="text-align: center; color: var(--gray); margin-top: 20px;">
+                    <p><i class="fas fa-shield-alt"></i> Secure payment processing via PayPal</p>
+                    <p style="margin-top: 10px;">Questions about pricing? <a href="#support" style="color: var(--primary);">Contact us</a></p>
                 </div>
             </div>
         </div>
@@ -1520,6 +1584,104 @@
         </div>
     </section>
 
+    <!-- Partner Program Section -->
+    <section class="section" id="partner" style="background-color: var(--dark);">
+        <div class="container">
+            <h1 class="section-title">Become a Nextdraw Partner</h1>
+            <p class="section-subtitle">Join our reseller program and earn up to 30% commission on every sale you generate. Promote professional trading tools to your audience and get rewarded.</p>
+
+            <div style="background: linear-gradient(135deg, var(--primary), var(--secondary)); padding: 20px; border-radius: 12px; text-align: center; font-size: 2rem; font-weight: 800; margin-bottom: 30px;">
+                Earn up to 30% <span style="font-size: 1rem; display: block; color: var(--light); opacity: 0.9;">on every product sale</span>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px;">
+                <div class="card">
+                    <h3 style="font-size: 1.8rem; margin-bottom: 20px; color: var(--primary);"><i class="fas fa-hand-holding-usd" style="margin-right: 10px;"></i> How It Works</h3>
+                    <ul style="list-style: none;">
+                        <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;"><i class="fas fa-check-circle" style="color: var(--success); font-size: 1.2rem;"></i> <strong>1. Apply:</strong> Fill out the form below to request a partnership.</li>
+                        <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;"><i class="fas fa-check-circle" style="color: var(--success); font-size: 1.2rem;"></i> <strong>2. Get Approved:</strong> We'll review your application within 48 hours.</li>
+                        <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;"><i class="fas fa-check-circle" style="color: var(--success); font-size: 1.2rem;"></i> <strong>3. Receive Unique Discount Code:</strong> Once approved, you'll get a personalized promo code (e.g., PARTNER20) that gives customers 10-20% off (depending on your tier).</li>
+                        <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;"><i class="fas fa-check-circle" style="color: var(--success); font-size: 1.2rem;"></i> <strong>4. Promote:</strong> Share your code via social media, YouTube, trading communities, or your website.</li>
+                        <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;"><i class="fas fa-check-circle" style="color: var(--success); font-size: 1.2rem;"></i> <strong>5. Earn Commission:</strong> Every time someone uses your code, you earn up to 30% of the sale amount. Commissions are paid monthly via PayPal.</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3 style="font-size: 1.8rem; margin-bottom: 20px; color: var(--primary);"><i class="fas fa-gem"></i> Benefits</h3>
+                    <ul style="list-style: none;">
+                        <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;"><i class="fas fa-percent" style="color: var(--success); font-size: 1.2rem;"></i> <strong>High Commissions:</strong> Earn 20% – 30% per sale based on volume.</li>
+                        <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;"><i class="fas fa-tag" style="color: var(--success); font-size: 1.2rem;"></i> <strong>Unique Discount Codes:</strong> Each partner gets a custom code to track their referrals.</li>
+                        <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;"><i class="fas fa-chart-line" style="color: var(--success); font-size: 1.2rem;"></i> <strong>Real‑Time Tracking:</strong> Dashboard to monitor clicks, sales, and earnings (coming soon).</li>
+                        <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;"><i class="fas fa-headset" style="color: var(--success); font-size: 1.2rem;"></i> <strong>Dedicated Support:</strong> We provide banners, email templates, and marketing materials.</li>
+                        <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;"><i class="fas fa-globe" style="color: var(--success); font-size: 1.2rem;"></i> <strong>Global Program:</strong> Open to traders, educators, influencers, and trading communities worldwide.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card" style="margin-top: 40px;">
+                <h3 style="text-align: center; font-size: 1.8rem; margin-bottom: 20px; color: var(--primary);">Apply to Become a Reseller</h3>
+                <p style="text-align: center; color: var(--gray); margin-bottom: 30px;">Fill out the form below and we'll get back to you within 48 hours with your unique discount code and next steps.</p>
+                <form action="https://formsubmit.co/teamalphacare9@gmail.com" method="POST" autocomplete="off">
+                    <input type="hidden" name="_subject" value="Partner Program Application - Nextdraw traders">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="text" name="_honey" style="display:none">
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div style="margin-bottom: 25px;">
+                            <label style="display: block; margin-bottom: 8px; font-weight: 600;">Full Name *</label>
+                            <input type="text" style="width: 100%; padding: 14px; background-color: var(--dark); border: 1px solid var(--border); border-radius: 6px; color: white; font-size: 1rem;" name="name" required>
+                        </div>
+                        <div style="margin-bottom: 25px;">
+                            <label style="display: block; margin-bottom: 8px; font-weight: 600;">Email Address *</label>
+                            <input type="email" style="width: 100%; padding: 14px; background-color: var(--dark); border: 1px solid var(--border); border-radius: 6px; color: white; font-size: 1rem;" name="email" required>
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div style="margin-bottom: 25px;">
+                            <label style="display: block; margin-bottom: 8px; font-weight: 600;">Country *</label>
+                            <input type="text" style="width: 100%; padding: 14px; background-color: var(--dark); border: 1px solid var(--border); border-radius: 6px; color: white; font-size: 1rem;" name="country" required>
+                        </div>
+                        <div style="margin-bottom: 25px;">
+                            <label style="display: block; margin-bottom: 8px; font-weight: 600;">PayPal Email (for commissions) *</label>
+                            <input type="email" style="width: 100%; padding: 14px; background-color: var(--dark); border: 1px solid var(--border); border-radius: 6px; color: white; font-size: 1rem;" name="paypal_email" required>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 25px;">
+                        <label style="display: block; margin-bottom: 8px; font-weight: 600;">How do you plan to promote our products? *</label>
+                        <textarea style="width: 100%; padding: 14px; background-color: var(--dark); border: 1px solid var(--border); border-radius: 6px; color: white; font-size: 1rem;" name="promotion_plan" rows="4" placeholder="e.g., YouTube channel, trading blog, social media, trading community, etc." required></textarea>
+                    </div>
+
+                    <div style="margin-bottom: 25px;">
+                        <label style="display: block; margin-bottom: 8px; font-weight: 600;">Estimated monthly sales volume (optional)</label>
+                        <input type="text" style="width: 100%; padding: 14px; background-color: var(--dark); border: 1px solid var(--border); border-radius: 6px; color: white; font-size: 1rem;" name="estimated_volume" placeholder="e.g., 10-20 sales/month">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" style="width: 100%; font-size: 1.2rem; padding: 16px;">
+                        <i class="fas fa-paper-plane"></i> Submit Application
+                    </button>
+                </form>
+                <p style="text-align: center; color: var(--gray); margin-top: 20px;">We'll send your unique discount code upon approval. Questions? Email <a href="mailto:teamalphacare9@gmail.com" style="color: var(--primary);">teamalphacare9@gmail.com</a></p>
+            </div>
+
+            <div style="margin-top: 60px; padding: 30px; background-color: rgba(37,99,235,0.1); border-radius: 12px; border: 1px solid var(--primary);">
+                <h3 style="color: var(--primary); margin-bottom: 15px;">Frequently Asked Questions</h3>
+                <div style="color: var(--light);">
+                    <p style="margin-bottom: 15px;"><strong>❓ How are commissions calculated?</strong><br>
+                    You earn a percentage of the final sale amount (after any discount applied). For example, if a product sells for $1000 and your commission rate is 25%, you earn $250.</p>
+                    <p style="margin-bottom: 15px;"><strong>❓ When do I get paid?</strong><br>
+                    Commissions are paid monthly via PayPal, usually within the first week of the following month. Minimum payout is $50.</p>
+                    <p style="margin-bottom: 15px;"><strong>❓ Can I promote multiple products?</strong><br>
+                    Yes! Your unique discount code works on all our products. You'll earn commissions on every product purchased with your code.</p>
+                    <p><strong>❓ Is there a cost to join?</strong><br>
+                    No – the program is completely free. You only earn when you sell.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer>
         <div class="container">
@@ -1607,7 +1769,7 @@
                 id: 1,
                 name: "Punjabi Trade Signals",
                 description: "A unique NinjaTrader indicator that displays professional buy/sell signals in authentic Punjabi script (ਖਰੀਦੇ/ਵੇਚੇ).",
-                price: 500.00,
+                price: 1000.00,
                 originalPrice: 2000.00,
                 category: "ninjatrader",
                 image: "https://raw.githubusercontent.com/deol26/nextdraws-com/main/images/punjabi1.jpeg",
@@ -1617,7 +1779,7 @@
                 id: 2,
                 name: "Volume Profile Supreme",
                 description: "Professional volume profile tool for TradingView with dynamic POC and value area calculations.",
-                price: 500.00,
+                price: 1000.00,
                 originalPrice: 2000.00,
                 category: "tradingview",
                 image: "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=400&h=300&fit=crop",
@@ -1627,7 +1789,7 @@
                 id: 3,
                 name: "Swing Trade Master Strategy",
                 description: "Complete swing trading strategy with entry/exit signals, stop loss management, and profit targets.",
-                price: 500.00,
+                price: 1000.00,
                 originalPrice: 2000.00,
                 category: "strategies",
                 image: "https://images.unsplash.com/photo-1642790551116-18e150f248e5?w=400&h=300&fit=crop",
@@ -1637,7 +1799,7 @@
                 id: 4,
                 name: "Liquidity Finder Pro",
                 description: "Detects liquidity pools and order blocks for NinjaTrader with smart visualization tools.",
-                price: 500.00,
+                price: 1000.00,
                 originalPrice: 2000.00,
                 category: "ninjatrader",
                 image: "https://images.unsplash.com/photo-1611095790444-1dfa35e37b52?w=400&h=300&fit=crop",
@@ -1647,7 +1809,7 @@
                 id: 5,
                 name: "Market Structure Scanner",
                 description: "Real-time market structure analysis for TradingView with automatic trendline drawing.",
-                price: 500.00,
+                price: 1000.00,
                 originalPrice: 2000.00,
                 category: "tradingview",
                 image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=400&h=300&fit=crop",
@@ -1657,7 +1819,7 @@
                 id: 6,
                 name: "Algorithmic Trading Suite",
                 description: "Complete suite for automated trading strategies on NinjaTrader with backtesting optimization.",
-                price: 500.00,
+                price: 1000.00,
                 originalPrice: 2000.00,
                 category: "strategies",
                 image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop",
@@ -1667,7 +1829,7 @@
                 id: 7,
                 name: "Smart Money Tracker",
                 description: "Institutional order flow tracking system for identifying smart money movements in real-time.",
-                price: 500.00,
+                price: 1000.00,
                 originalPrice: 2000.00,
                 category: "ninjatrader",
                 image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop",
@@ -1677,7 +1839,7 @@
                 id: 8,
                 name: "Fibonacci Master Tool",
                 description: "Advanced Fibonacci retracement and extension tool with automatic level plotting.",
-                price: 500.00,
+                price: 1000.00,
                 originalPrice: 2000.00,
                 category: "tradingview",
                 image: "https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?w=400&h=300&fit=crop",
@@ -1687,7 +1849,7 @@
                 id: 9,
                 name: "Scalping Pro System",
                 description: "High-frequency scalping strategy optimized for 1-5 minute charts with tight risk management.",
-                price: 500.00,
+                price: 1000.00,
                 originalPrice: 2000.00,
                 category: "strategies",
                 image: "https://images.unsplash.com/photo-1559526324-593bc073d938?w=400&h=300&fit=crop",
@@ -1697,7 +1859,7 @@
                 id: 10,
                 name: "Elliott Wave Analyzer",
                 description: "Automated Elliott Wave pattern recognition with wave count suggestions.",
-                price: 500.00,
+                price: 1000.00,
                 originalPrice: 2000.00,
                 category: "ninjatrader",
                 image: "https://images.unsplash.com/photo-1633158829875-e5316a358c6f?w=400&h=300&fit=crop",
@@ -1707,7 +1869,7 @@
                 id: 11,
                 name: "RSI Divergence Hunter",
                 description: "Scans multiple timeframes for RSI divergences with automatic alert system.",
-                price: 500.00,
+                price: 1000.00,
                 originalPrice: 2000.00,
                 category: "tradingview",
                 image: "https://images.unsplash.com/photo-1590650153855-d9e808231d41?w=400&h=300&fit=crop",
@@ -1717,7 +1879,7 @@
                 id: 12,
                 name: "Breakout Beast Strategy",
                 description: "Momentum-based breakout strategy with volume confirmation and false breakout filter.",
-                price: 500.00,
+                price: 1000.00,
                 originalPrice: 2000.00,
                 category: "strategies",
                 image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400&h=300&fit=crop",
@@ -1727,7 +1889,7 @@
                 id: 13,
                 name: "VWAP Master Indicator",
                 description: "Professional VWAP tool with standard deviation bands and anchored VWAP capabilities.",
-                price: 500.00,
+                price: 1000.00,
                 originalPrice: 2000.00,
                 category: "ninjatrader",
                 image: "https://images.unsplash.com/photo-1579532537598-459ecdaf39cc?w=400&h=300&fit=crop",
@@ -1737,7 +1899,7 @@
                 id: 14,
                 name: "Candlestick Pattern Pro",
                 description: "Comprehensive candlestick pattern recognition with reliability ratings and alerts.",
-                price: 500.00,
+                price: 1000.00,
                 originalPrice: 2000.00,
                 category: "tradingview",
                 image: "https://images.unsplash.com/photo-1642790595390-6b21f9b2b45f?w=400&h=300&fit=crop",
@@ -1747,7 +1909,7 @@
                 id: 15,
                 name: "Trend Rider System",
                 description: "Long-term trend following strategy with adaptive position sizing and trailing stops.",
-                price: 500.00,
+                price: 1000.00,
                 originalPrice: 2000.00,
                 category: "strategies",
                 image: "https://images.unsplash.com/photo-1613243555978-c155d7e29f18?w=400&h=300&fit=crop",
@@ -1757,7 +1919,7 @@
                 id: 16,
                 name: "Support Resistance Zones",
                 description: "Intelligent support and resistance zone identification with strength ratings.",
-                price: 500.00,
+                price: 1000.00,
                 originalPrice: 2000.00,
                 category: "ninjatrader",
                 image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=400&h=300&fit=crop",
@@ -1765,19 +1927,19 @@
             },
             {
                 id: 17,
-                name: "Supertrend Indicator Pro",
-                description: "Enhanced Supertrend indicator with multiple timeframe analysis and custom ATR periods.",
-                price: 500.00,
+                name: "Ichimoku Cloud Plus",
+                description: "Enhanced Ichimoku indicator with additional signals and cloud analysis tools.",
+                price: 1000.00,
                 originalPrice: 2000.00,
                 category: "tradingview",
                 image: "https://images.unsplash.com/photo-1642543492849-56a9b9b42d3b?w=400&h=300&fit=crop",
-                features: ["Multi-period Supertrend", "Trend strength", "Entry signals", "Stop loss levels"]
+                features: ["Enhanced cloud signals", "Kumo twist alerts", "TK cross notifications", "Custom settings"]
             },
             {
                 id: 18,
                 name: "Mean Reversion Master",
                 description: "Statistical mean reversion strategy using Bollinger Bands and standard deviation.",
-                price: 500.00,
+                price: 1000.00,
                 originalPrice: 2000.00,
                 category: "strategies",
                 image: "https://images.unsplash.com/photo-1620321023374-d1a68fbc720d?w=400&h=300&fit=crop",
@@ -1787,7 +1949,7 @@
                 id: 19,
                 name: "Order Flow Imbalance",
                 description: "Advanced order flow analysis showing buy/sell imbalances and institutional activity.",
-                price: 500.00,
+                price: 1000.00,
                 originalPrice: 2000.00,
                 category: "ninjatrader",
                 image: "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=400&h=300&fit=crop",
@@ -1797,7 +1959,7 @@
                 id: 20,
                 name: "Multi-Timeframe Trend",
                 description: "Analyzes trend across multiple timeframes for confluence trading opportunities.",
-                price: 500.00,
+                price: 1000.00,
                 originalPrice: 2000.00,
                 category: "tradingview",
                 image: "https://images.unsplash.com/photo-1543286386-2e659306cd6c?w=400&h=300&fit=crop",
@@ -1807,7 +1969,7 @@
                 id: 21,
                 name: "Gap Trading System",
                 description: "Specialized strategy for trading opening gaps with statistical edge and risk management.",
-                price: 500.00,
+                price: 1000.00,
                 originalPrice: 2000.00,
                 category: "strategies",
                 image: "https://images.unsplash.com/photo-1569025690938-a00729c9e1f9?w=400&h=300&fit=crop",
@@ -1817,7 +1979,7 @@
                 id: 22,
                 name: "Smart Order Block Detector",
                 description: "Identifies institutional order blocks with precision for optimal entry points.",
-                price: 500.00,
+                price: 1000.00,
                 originalPrice: 2000.00,
                 category: "ninjatrader",
                 image: "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=400&h=300&fit=crop",
@@ -1827,7 +1989,7 @@
                 id: 23,
                 name: "Stochastic RSI Combo",
                 description: "Combined Stochastic and RSI indicator with divergence detection and overbought/oversold zones.",
-                price: 500.00,
+                price: 1000.00,
                 originalPrice: 2000.00,
                 category: "tradingview",
                 image: "https://images.unsplash.com/photo-1639322537504-6427a16b0a28?w=400&h=300&fit=crop",
@@ -1837,7 +1999,7 @@
                 id: 24,
                 name: "News Trading Bot",
                 description: "Automated trading system that reacts to economic news releases with predefined strategies.",
-                price: 500.00,
+                price: 1000.00,
                 originalPrice: 2000.00,
                 category: "strategies",
                 image: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=400&h=300&fit=crop",
@@ -1847,7 +2009,7 @@
                 id: 25,
                 name: "Price Action Scanner",
                 description: "Pure price action analysis tool identifying key patterns without lagging indicators.",
-                price: 500.00,
+                price: 1000.00,
                 originalPrice: 2000.00,
                 category: "ninjatrader",
                 image: "https://images.unsplash.com/photo-1560520653-9e0e4c89eb11?w=400&h=300&fit=crop",
@@ -1857,7 +2019,7 @@
                 id: 26,
                 name: "Pivot Point Calculator",
                 description: "Automatic pivot point calculation with multiple methods (Standard, Fibonacci, Camarilla).",
-                price: 500.00,
+                price: 1000.00,
                 originalPrice: 2000.00,
                 category: "tradingview",
                 image: "https://images.unsplash.com/photo-1642790551116-18e150f248e5?w=400&h=300&fit=crop",
@@ -1867,7 +2029,7 @@
                 id: 27,
                 name: "Arbitrage Hunter Pro",
                 description: "Cross-exchange arbitrage detection system for cryptocurrency and forex markets.",
-                price: 500.00,
+                price: 1000.00,
                 originalPrice: 2000.00,
                 category: "strategies",
                 image: "https://images.unsplash.com/photo-1560472355-536de3962603?w=400&h=300&fit=crop",
@@ -1877,7 +2039,7 @@
                 id: 28,
                 name: "ATR Volatility Bands",
                 description: "Dynamic volatility bands based on Average True Range for adaptive trading ranges.",
-                price: 500.00,
+                price: 1000.00,
                 originalPrice: 2000.00,
                 category: "ninjatrader",
                 image: "https://images.unsplash.com/photo-1554672408-730808814d3f?w=400&h=300&fit=crop",
@@ -1887,7 +2049,7 @@
                 id: 29,
                 name: "Wyckoff Accumulation Tool",
                 description: "Identifies Wyckoff accumulation and distribution phases with phase annotations.",
-                price: 500.00,
+                price: 1000.00,
                 originalPrice: 2000.00,
                 category: "tradingview",
                 image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400&h=300&fit=crop",
@@ -1897,7 +2059,7 @@
                 id: 30,
                 name: "Options Flow Strategy",
                 description: "Tracks unusual options activity and generates trading signals based on smart money flow.",
-                price: 500.00,
+                price: 1000.00,
                 originalPrice: 2000.00,
                 category: "strategies",
                 image: "https://images.unsplash.com/photo-1535320903710-d993d3d77d29?w=400&h=300&fit=crop",
@@ -1907,7 +2069,7 @@
                 id: 31,
                 name: "Harmonic Pattern Finder",
                 description: "Automatically detects and plots harmonic patterns like Gartley, Butterfly, and Bat.",
-                price: 500.00,
+                price: 1000.00,
                 originalPrice: 2000.00,
                 category: "ninjatrader",
                 image: "https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=400&h=300&fit=crop",
@@ -1917,7 +2079,7 @@
                 id: 32,
                 name: "Moving Average Crossover Pro",
                 description: "Advanced MA crossover system with multiple timeframe confirmation and filters.",
-                price: 500.00,
+                price: 1000.00,
                 originalPrice: 2000.00,
                 category: "tradingview",
                 image: "https://images.unsplash.com/photo-1640158615573-cd28feb1bf4e?w=400&h=300&fit=crop",
@@ -1927,7 +2089,7 @@
                 id: 33,
                 name: "Market Maker Model",
                 description: "Trading strategy based on market maker behavior and liquidity grab patterns.",
-                price: 500.00,
+                price: 1000.00,
                 originalPrice: 2000.00,
                 category: "strategies",
                 image: "https://images.unsplash.com/photo-1579165466741-7f35e4755660?w=400&h=300&fit=crop",
@@ -1937,7 +2099,7 @@
                 id: 34,
                 name: "Correlation Matrix Tool",
                 description: "Real-time correlation analysis across multiple instruments for diversification.",
-                price: 500.00,
+                price: 1000.00,
                 originalPrice: 2000.00,
                 category: "ninjatrader",
                 image: "https://images.unsplash.com/photo-1562577309-4932fdd64cd1?w=400&h=300&fit=crop",
@@ -1947,7 +2109,7 @@
                 id: 35,
                 name: "Supply Demand Zones Elite",
                 description: "Professional supply and demand zone identification with order flow confirmation.",
-                price: 500.00,
+                price: 1000.00,
                 originalPrice: 2000.00,
                 category: "tradingview",
                 image: "https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=400&h=300&fit=crop",
@@ -1957,7 +2119,7 @@
                 id: 36,
                 name: "Grid Trading System",
                 description: "Automated grid trading bot with dynamic grid spacing and risk management.",
-                price: 500.00,
+                price: 1000.00,
                 originalPrice: 2000.00,
                 category: "strategies",
                 image: "https://images.unsplash.com/photo-1590650046871-92c887180603?w=400&h=300&fit=crop",
@@ -1967,7 +2129,7 @@
                 id: 37,
                 name: "Tick Volume Analysis",
                 description: "Advanced tick volume analysis for identifying institutional buying and selling pressure.",
-                price: 500.00,
+                price: 1000.00,
                 originalPrice: 2000.00,
                 category: "ninjatrader",
                 image: "https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?w=400&h=300&fit=crop",
@@ -1977,7 +2139,7 @@
                 id: 38,
                 name: "Bollinger Band Squeeze",
                 description: "Specialized indicator for trading Bollinger Band squeeze breakouts with momentum.",
-                price: 500.00,
+                price: 1000.00,
                 originalPrice: 2000.00,
                 category: "tradingview",
                 image: "https://images.unsplash.com/photo-1559526324-593bc073d938?w=400&h=300&fit=crop",
@@ -1987,7 +2149,7 @@
                 id: 39,
                 name: "Pairs Trading Strategy",
                 description: "Statistical arbitrage strategy trading correlated pairs with mean reversion logic.",
-                price: 500.00,
+                price: 1000.00,
                 originalPrice: 2000.00,
                 category: "strategies",
                 image: "https://images.unsplash.com/photo-1633158829875-e5316a358c6f?w=400&h=300&fit=crop",
@@ -1997,7 +2159,7 @@
                 id: 40,
                 name: "Session High Low Indicator",
                 description: "Marks session highs/lows with automatic support/resistance levels for each trading session.",
-                price: 500.00,
+                price: 1000.00,
                 originalPrice: 2000.00,
                 category: "ninjatrader",
                 image: "https://images.unsplash.com/photo-1590650153855-d9e808231d41?w=400&h=300&fit=crop",
@@ -2007,7 +2169,7 @@
                 id: 41,
                 name: "Supertrend Indicator Pro",
                 description: "Enhanced Supertrend indicator with multiple timeframe analysis and custom ATR periods.",
-                price: 500.00,
+                price: 1000.00,
                 originalPrice: 2000.00,
                 category: "tradingview",
                 image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400&h=300&fit=crop",
@@ -2017,7 +2179,7 @@
                 id: 42,
                 name: "Volatility Breakout System",
                 description: "Trades volatility expansion after consolidation with precise entry and exit rules.",
-                price: 500.00,
+                price: 1000.00,
                 originalPrice: 2000.00,
                 category: "strategies",
                 image: "https://images.unsplash.com/photo-1579532537598-459ecdaf39cc?w=400&h=300&fit=crop",
@@ -2027,7 +2189,7 @@
                 id: 43,
                 name: "Market Profile Analytics",
                 description: "Complete market profile tool with TPO charts, value areas, and point of control.",
-                price: 500.00,
+                price: 1000.00,
                 originalPrice: 2000.00,
                 category: "ninjatrader",
                 image: "https://images.unsplash.com/photo-1642790595390-6b21f9b2b45f?w=400&h=300&fit=crop",
@@ -2037,7 +2199,7 @@
                 id: 44,
                 name: "KDJ Indicator Suite",
                 description: "Advanced KDJ stochastic indicator with divergence detection and overbought/oversold signals.",
-                price: 500.00,
+                price: 1000.00,
                 originalPrice: 2000.00,
                 category: "tradingview",
                 image: "https://images.unsplash.com/photo-1613243555978-c155d7e29f18?w=400&h=300&fit=crop",
@@ -2047,7 +2209,7 @@
                 id: 45,
                 name: "Smart Trailing Stop System",
                 description: "Intelligent trailing stop strategy that adapts to market volatility and trend strength.",
-                price: 500.00,
+                price: 1000.00,
                 originalPrice: 2000.00,
                 category: "strategies",
                 image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=400&h=300&fit=crop",
@@ -2057,7 +2219,7 @@
                 id: 46,
                 name: "Cumulative Delta Volume",
                 description: "Tracks cumulative delta volume to show buying and selling pressure over time.",
-                price: 500.00,
+                price: 1000.00,
                 originalPrice: 2000.00,
                 category: "ninjatrader",
                 image: "https://images.unsplash.com/photo-1642543492849-56a9b9b42d3b?w=400&h=300&fit=crop",
@@ -2067,7 +2229,7 @@
                 id: 47,
                 name: "Momentum Wave Indicator",
                 description: "Identifies momentum waves and cycles for timing entries at wave lows and highs.",
-                price: 500.00,
+                price: 1000.00,
                 originalPrice: 2000.00,
                 category: "tradingview",
                 image: "https://images.unsplash.com/photo-1620321023374-d1a68fbc720d?w=400&h=300&fit=crop",
@@ -2077,7 +2239,7 @@
                 id: 48,
                 name: "DCA Dollar Cost Averaging",
                 description: "Automated dollar-cost averaging strategy with customizable intervals and amounts.",
-                price: 500.00,
+                price: 1000.00,
                 originalPrice: 2000.00,
                 category: "strategies",
                 image: "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=400&h=300&fit=crop",
@@ -2087,7 +2249,7 @@
                 id: 49,
                 name: "Accumulation Distribution Line",
                 description: "Advanced A/D line indicator showing money flow into and out of securities.",
-                price: 500.00,
+                price: 1000.00,
                 originalPrice: 2000.00,
                 category: "ninjatrader",
                 image: "https://images.unsplash.com/photo-1543286386-2e659306cd6c?w=400&h=300&fit=crop",
@@ -2097,7 +2259,7 @@
                 id: 50,
                 name: "Heikin Ashi Smoothed",
                 description: "Smoothed Heikin Ashi candles with trend filter for clearer trend identification.",
-                price: 500.00,
+                price: 1000.00,
                 originalPrice: 2000.00,
                 category: "tradingview",
                 image: "https://images.unsplash.com/photo-1569025690938-a00729c9e1f9?w=400&h=300&fit=crop",
@@ -2107,7 +2269,7 @@
                 id: 51,
                 name: "Martingale Recovery System",
                 description: "Advanced martingale strategy with safety features and maximum loss limits.",
-                price: 500.00,
+                price: 1000.00,
                 originalPrice: 2000.00,
                 category: "strategies",
                 image: "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=400&h=300&fit=crop",
@@ -2117,7 +2279,7 @@
                 id: 52,
                 name: "Chaikin Money Flow",
                 description: "Professional Chaikin Money Flow indicator measuring buying and selling pressure.",
-                price: 500.00,
+                price: 1000.00,
                 originalPrice: 2000.00,
                 category: "ninjatrader",
                 image: "https://images.unsplash.com/photo-1639322537504-6427a16b0a28?w=400&h=300&fit=crop",
@@ -2127,7 +2289,7 @@
                 id: 53,
                 name: "Keltner Channel Pro",
                 description: "Enhanced Keltner Channels with multiple ATR multipliers and breakout signals.",
-                price: 500.00,
+                price: 1000.00,
                 originalPrice: 2000.00,
                 category: "tradingview",
                 image: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=400&h=300&fit=crop",
@@ -2137,7 +2299,7 @@
                 id: 54,
                 name: "Statistical Arbitrage Bot",
                 description: "Quantitative trading system exploiting statistical inefficiencies across markets.",
-                price: 500.00,
+                price: 1000.00,
                 originalPrice: 2000.00,
                 category: "strategies",
                 image: "https://images.unsplash.com/photo-1560520653-9e0e4c89eb11?w=400&h=300&fit=crop",
@@ -2147,7 +2309,7 @@
                 id: 55,
                 name: "Relative Volume Indicator",
                 description: "Shows current volume relative to average volume for spotting unusual activity.",
-                price: 500.00,
+                price: 1000.00,
                 originalPrice: 2000.00,
                 category: "ninjatrader",
                 image: "https://images.unsplash.com/photo-1642790551116-18e150f248e5?w=400&h=300&fit=crop",
@@ -2157,7 +2319,7 @@
                 id: 56,
                 name: "Adaptive Moving Average",
                 description: "Self-adjusting moving average that adapts to market volatility and trending conditions.",
-                price: 500.00,
+                price: 1000.00,
                 originalPrice: 2000.00,
                 category: "tradingview",
                 image: "https://images.unsplash.com/photo-1560472355-536de3962603?w=400&h=300&fit=crop",
@@ -2167,7 +2329,7 @@
                 id: 57,
                 name: "Range Trading Expert",
                 description: "Specialized strategy for trading range-bound markets with support/resistance bounces.",
-                price: 500.00,
+                price: 1000.00,
                 originalPrice: 2000.00,
                 category: "strategies",
                 image: "https://images.unsplash.com/photo-1554672408-730808814d3f?w=400&h=300&fit=crop",
@@ -2177,7 +2339,7 @@
                 id: 58,
                 name: "Williams %R Elite",
                 description: "Enhanced Williams %R oscillator with divergence detection and multi-timeframe analysis.",
-                price: 500.00,
+                price: 1000.00,
                 originalPrice: 2000.00,
                 category: "ninjatrader",
                 image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400&h=300&fit=crop",
@@ -2187,7 +2349,7 @@
                 id: 59,
                 name: "Donchian Channel System",
                 description: "Complete Donchian Channel breakout system with trend following logic.",
-                price: 500.00,
+                price: 1000.00,
                 originalPrice: 2000.00,
                 category: "tradingview",
                 image: "https://images.unsplash.com/photo-1535320903710-d993d3d77d29?w=400&h=300&fit=crop",
@@ -2197,7 +2359,7 @@
                 id: 60,
                 name: "Machine Learning Predictor",
                 description: "AI-powered prediction system using machine learning algorithms for price forecasting.",
-                price: 500.00,
+                price: 1000.00,
                 originalPrice: 2000.00,
                 category: "strategies",
                 image: "https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=400&h=300&fit=crop",
@@ -2276,8 +2438,7 @@
             updateCartDisplay();
             setupEventListeners();
             
-            // Payment button active by default
-            paypalCheckoutBtn.classList.add('active');
+            // Payment button disabled by default - only enabled after form submission
             standardCheckoutBtn.style.display = 'none';
         });
         
@@ -2870,6 +3031,31 @@
                     navLinks.style.display = '';
                 }
             });
+            
+            // Strategies link handler
+            const strategiesLink = document.querySelector('.strategies-link');
+            if (strategiesLink) {
+                strategiesLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Scroll to products section
+                    document.querySelector('#products').scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    
+                    // After scroll, filter to strategies
+                    setTimeout(() => {
+                        // Remove active from all filter buttons
+                        filterBtns.forEach(btn => btn.classList.remove('active'));
+                        // Find and activate the strategies filter button
+                        const strategiesBtn = Array.from(filterBtns).find(btn => btn.getAttribute('data-filter') === 'strategies');
+                        if (strategiesBtn) {
+                            strategiesBtn.classList.add('active');
+                            renderProducts('strategies');
+                        }
+                    }, 500);
+                });
+            }
         }
     </script>
 </body>
