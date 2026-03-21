@@ -987,9 +987,276 @@
                 opacity: 0;
             }
         }
+
+        /* Disclaimer Modal */
+        .disclaimer-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+
+        .disclaimer-modal-overlay.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .disclaimer-modal {
+            background-color: var(--card-bg);
+            border: 2px solid var(--primary);
+            border-radius: 16px;
+            max-width: 700px;
+            max-height: 90vh;
+            width: 90%;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            animation: modalSlideIn 0.4s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .disclaimer-modal-header {
+            padding: 30px;
+            border-bottom: 1px solid var(--border);
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(124, 58, 237, 0.05));
+        }
+
+        .disclaimer-modal-header h2 {
+            color: white;
+            margin: 0;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .disclaimer-modal-header h2 i {
+            color: var(--warning);
+        }
+
+        .disclaimer-modal-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 30px;
+            color: var(--gray);
+            line-height: 1.8;
+        }
+
+        .disclaimer-modal-content h3 {
+            color: white;
+            margin-top: 20px;
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+        }
+
+        .disclaimer-modal-content p {
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .disclaimer-modal-content ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .disclaimer-modal-content ul li {
+            margin-bottom: 8px;
+        }
+
+        .disclaimer-modal-footer {
+            padding: 25px 30px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            gap: 15px;
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+
+        .disclaimer-modal-footer button {
+            flex: 1;
+            padding: 14px 24px;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .modal-accept-btn {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+        }
+
+        .modal-accept-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
+        }
+
+        .modal-decline-btn {
+            background-color: #ef4444;
+            color: white;
+        }
+
+        .modal-decline-btn:hover {
+            background-color: #dc2626;
+        }
+
+        .access-blocked-message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: var(--card-bg);
+            border: 2px solid #ef4444;
+            border-radius: 12px;
+            padding: 40px;
+            text-align: center;
+            z-index: 10001;
+            max-width: 500px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .access-blocked-message h3 {
+            color: #ef4444;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .access-blocked-message p {
+            color: var(--gray);
+            margin-bottom: 25px;
+        }
+
+        .access-blocked-message button {
+            padding: 12px 30px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        .access-blocked-message button:hover {
+            background-color: var(--primary-dark);
+        }
+
+        /* Scrollbar styling */
+        .disclaimer-modal-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .disclaimer-modal-content::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+
+        .disclaimer-modal-content::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
+        }
+
+        .disclaimer-modal-content::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-dark);
+        }
+
+        @media (max-width: 576px) {
+            .disclaimer-modal {
+                width: 95%;
+                max-height: 95vh;
+            }
+
+            .disclaimer-modal-header {
+                padding: 20px;
+            }
+
+            .disclaimer-modal-header h2 {
+                font-size: 1.4rem;
+            }
+
+            .disclaimer-modal-content {
+                padding: 20px;
+            }
+
+            .disclaimer-modal-footer {
+                flex-direction: column;
+                padding: 20px;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- Disclaimer Modal -->
+    <div class="disclaimer-modal-overlay" id="disclaimerModalOverlay">
+        <div class="disclaimer-modal" id="disclaimerModal">
+            <div class="disclaimer-modal-header">
+                <h2><i class="fas fa-exclamation-triangle"></i>Important Disclaimers</h2>
+            </div>
+            <div class="disclaimer-modal-content">
+                <!-- Terms and Conditions Section (Collapsible) -->
+                <div style="background-color: rgba(37, 99, 235, 0.1); border: 1px solid var(--primary); border-radius: 8px; padding: 15px; margin-bottom: 25px;">
+                    <button id="expandTnCBtn" style="width: 100%; text-align: left; background: none; border: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; padding: 0; color: var(--primary); font-weight: 600; font-size: 1rem;">
+                        <span><i class="fas fa-file-contract" style="margin-right: 10px;"></i>Terms and Conditions</span>
+                        <i class="fas fa-chevron-down" id="expandTnCIcon" style="transition: transform 0.3s;"></i>
+                    </button>
+                    <p style="color: var(--gray); font-size: 0.9rem; margin-top: 10px; margin-bottom: 0;">Please review our complete Terms and Conditions of Use for more information about product usage, liability limitations, and user responsibilities.</p>
+                    
+                    <!-- Full T&C Content (Hidden by default) -->
+                    <div id="tncContent" style="display: none; margin-top: 20px; padding-top: 15px; border-top: 1px solid var(--primary); max-height: 400px; overflow-y: auto; color: var(--gray); font-size: 0.9rem; line-height: 1.6;">
+                        <h4 style="color: white; margin-top: 0;">1. INTRODUCTION</h4>
+                        <p>Welcome to Next Draws. These Terms and Conditions govern your access to and use of our website and any products purchased or downloaded from us. By accessing our website or purchasing any Product, you acknowledge that you have read, understood, and agree to be bound by these Terms.</p>
+                        
+                        <h4 style="color: white; margin-top: 15px;">2. PRODUCT CLASSIFICATION AND NO INVESTMENT ADVICE</h4>
+                        <p><strong>Our Products are technical analysis tools and educational resources only.</strong> We are NOT registered investment advisors, broker-dealers, financial planners, or securities professionals. We do NOT provide investment advice, financial advice, or trading recommendations.</p>
+                        
+                        <h4 style="color: white; margin-top: 15px;\">3. USER RESPONSIBILITY AND ASSUMPTION OF RISK</h4>
+                        <p><strong>YOU ARE SOLELY RESPONSIBLE FOR:</strong> All trading decisions, all profits and losses, configuring and testing products, monitoring trading activity, and compliance with all applicable laws.</p>\n                        <p>Trading involves substantial risk of loss. Past performance is not indicative of future results. No trading strategy, tool, or indicator can guarantee profits or prevent losses.</p>\n                        \n                        <h4 style=\"color: white; margin-top: 15px;\">4. NO WARRANTIES - PRODUCT PROVIDED \"AS-IS\"</h4>\n                        <p><strong>OUR PRODUCTS ARE PROVIDED \"AS IS\" WITHOUT WARRANTIES OF ANY KIND.</strong> We make NO guarantees regarding profitability, performance, or prevention of losses. Products may contain bugs or be incompatible with future platform versions.</p>\n                        \n                        <h4 style=\"color: white; margin-top: 15px;\">5. LIMITATION OF LIABILITY</h4>\n                        <p><strong>WE SHALL NOT BE LIABLE FOR:</strong> Trading losses, missed profits, indirect or consequential damages, third-party failures, or user errors. Our liability is capped at the amount you paid for the specific product during the preceding 12 months.</p>\n                        \n                        <h4 style=\"color: white; margin-top: 15px;\">6. INTELLECTUAL PROPERTY RIGHTS</h4>\n                        <p>Our Products are proprietary and protected by copyright and trade secret laws. You receive a limited, non-exclusive, non-transferable license for personal trading use only. You may NOT redistribute, modify, reverse engineer, or use products to compete with us.</p>\n                        \n                        <h4 style=\"color: white; margin-top: 15px;\">7. INDEMNIFICATION</h4>\n                        <p>You agree to defend, indemnify, and hold harmless Next Draws from any claims arising from your use of products, violation of these Terms, or third-party disputes.</p>\n                        \n                        <h4 style=\"color: white; margin-top: 15px;\">8. TERMINATION</h4>\n                        <p>We reserve the right to terminate your access at any time. Upon termination, your license ceases and you must delete all copies of the product.</p>\n                        \n                        <p style=\"margin-top: 20px; padding-top: 15px; border-top: 1px solid var(--border); font-size: 0.85rem; color: var(--light);\"><strong>For the complete Terms and Conditions document, please visit the Terms and Conditions page on our website.</strong></p>\n                    </div>\n                </div>
+                
+                <p style="font-weight: 600; color: var(--warning);"><i class="fas fa-alert"></i> Please read these important disclaimers carefully before using our products.</p>
+                
+                <h3><i class="fas fa-exclamation-triangle" style="color: var(--warning); margin-right: 8px;"></i>Risk Disclosure</h3>
+                <p>Futures and forex trading contains substantial risk and is not for every investor. An investor could potentially lose all or more than the initial investment. Risk capital is money that can be lost without jeopardizing one's financial security or lifestyle. Only risk capital should be used for trading and only those with sufficient risk capital should consider trading. Past performance is not necessarily indicative of future results.</p>
+                
+                <h3><i class="fas fa-chart-line" style="color: var(--primary); margin-right: 8px;"></i>Hypothetical Performance Disclosure</h3>
+                <p>Hypothetical performance results have many inherent limitations. No representation is being made that any account will or is likely to achieve profits or losses similar to those shown; in fact, there are frequently sharp differences between hypothetical performance results and actual results subsequently achieved by any particular trading program.</p>
+                <p>Hypothetical trading does not involve financial risk, and no hypothetical trading record can completely account for the impact of financial risk of actual trading. The ability to withstand losses or to adhere to a particular trading program in spite of trading losses can adversely affect actual trading results.</p>
+                
+                <h3><i class="fas fa-video" style="color: var(--secondary); margin-right: 8px;"></i>Live Trade Room Disclosure</h3>
+                <p>This presentation is for educational purposes only and the opinions expressed are those of the presenter only. All trades presented should be considered hypothetical and should not be expected to be replicated in a live trading account.</p>
+                
+                <h3><i class="fas fa-star" style="color: var(--warning); margin-right: 8px;"></i>Testimonial Disclosure</h3>
+                <p>Testimonials appearing on this website may not be representative of other clients or customers and is not a guarantee of future performance or success.</p>
+                
+                <p style="margin-top: 25px; padding-top: 20px; border-top: 1px solid var(--border); color: var(--light);"><strong>By clicking "I Accept", you acknowledge that you have read, understood, and agree to be bound by these disclaimers and our Terms and Conditions. You assume full responsibility for all trading decisions and outcomes.</strong></p>
+            </div>
+            <div class="disclaimer-modal-footer">
+                <button class="modal-accept-btn" id="acceptDisclaimerBtn"><i class="fas fa-check-circle" style="margin-right: 8px;"></i>I Accept / Accept Terms / I Agree</button>
+                <button class="modal-decline-btn" id="declineDisclaimerBtn"><i class="fas fa-times-circle" style="margin-right: 8px;"></i>Decline</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Disclaimer Ticker -->
     <div class="disclaimer-ticker">
         <div class="ticker-content">
@@ -1013,6 +1280,7 @@
                     <a href="#pricing">Pricing</a>
                     <a href="#testimonials">Testimonials</a>
                     <a href="#partner">Partner</a>
+                    <a href="#disclaimers">Disclaimer</a>
                     <div class="cart-icon" id="cartIcon">
                         <i class="fas fa-shopping-cart"></i>
                         <span class="cart-count" id="cartCount">0</span>
@@ -1043,6 +1311,9 @@
                     <span>BUILD YOUR OWN <small style="animation: blink 1s infinite; color: var(--success); font-weight: bold;">(new)</small></span>
                     <small style="font-size: 0.65rem; opacity: 0.7; font-weight: 400;">strategies, indicators, Bars type</small>
                 </a>
+                <button class="filter-btn" data-filter="free" style="display: flex; flex-direction: column; align-items: center; gap: 2px;">
+                    <span>Free Indicators/Tools <small style="animation: blink 1s infinite; color: var(--warning); font-weight: bold;">coming soon</small></span>
+                </button>
             </div>
             
             <div class="products-grid" id="productsGrid">
@@ -1682,6 +1953,264 @@
         </div>
     </section>
 
+    <!-- Disclaimers Section -->
+    <section class="section" id="disclaimers" style="background-color: var(--dark);">
+        <div class="container">
+            <div style="max-width: 900px; margin: 0 auto; background-color: var(--card-bg); padding: 50px; border-radius: 12px; border: 1px solid var(--border);">
+                <h2 style="font-size: 2rem; margin-bottom: 30px; color: white;">Important Disclaimers</h2>
+                <div style="color: var(--gray); line-height: 1.8;">
+                    
+                    <h3 style="color: white; margin-top: 30px; margin-bottom: 15px;"><i class="fas fa-exclamation-triangle" style="color: var(--warning); margin-right: 8px;"></i>Risk Disclosure</h3>
+                    <p>Futures and forex trading contains substantial risk and is not for every investor. An investor could potentially lose all or more than the initial investment. Risk capital is money that can be lost without jeopardizing one's financial security or lifestyle. Only risk capital should be used for trading and only those with sufficient risk capital should consider trading. Past performance is not necessarily indicative of future results.</p>
+                    
+                    <h3 style="color: white; margin-top: 30px; margin-bottom: 15px;"><i class="fas fa-chart-line" style="color: var(--primary); margin-right: 8px;"></i>Hypothetical Performance Disclosure</h3>
+                    <p>Hypothetical performance results have many inherent limitations, some of which are described below. No representation is being made that any account will or is likely to achieve profits or losses similar to those shown; in fact, there are frequently sharp differences between hypothetical performance results and the actual results subsequently achieved by any particular trading program. One of the limitations of hypothetical performance results is that they are generally prepared with the benefit of hindsight. In addition, hypothetical trading does not involve financial risk, and no hypothetical trading record can completely account for the impact of financial risk of actual trading.</p>
+                    <p style="margin-top: 15px;">For example, the ability to withstand losses or to adhere to a particular trading program in spite of trading losses are material points which can also adversely affect actual trading results. There are numerous other factors related to the markets in general or to the implementation of any specific trading program which cannot be fully accounted for in the preparation of hypothetical performance results and all which can adversely affect trading results.</p>
+                    
+                    <h3 style="color: white; margin-top: 30px; margin-bottom: 15px;"><i class="fas fa-video" style="color: var(--secondary); margin-right: 8px;"></i>Live Trade Room Disclosure</h3>
+                    <p>This presentation is for educational purposes only and the opinions expressed are those of the presenter only. All trades presented should be considered hypothetical and should not be expected to be replicated in a live trading account.</p>
+                    
+                    <h3 style="color: white; margin-top: 30px; margin-bottom: 15px;"><i class="fas fa-star" style="color: var(--warning); margin-right: 8px;"></i>Testimonial Disclosure</h3>
+                    <p>Testimonials appearing on this website may not be representative of other clients or customers and is not a guarantee of future performance or success.</p>
+                    
+                    <div style="margin-top: 40px; padding: 20px; background-color: rgba(239, 68, 68, 0.1); border-radius: 8px; border-left: 4px solid var(--danger);">
+                        <p style="color: var(--light); margin: 0;"><strong><i class="fas fa-shield-alt"></i> Disclaimer:</strong> By using our products and services, you acknowledge that you have read and understand these disclaimers. Trading is inherently risky and results may vary. Always consult with financial advisors before making investment decisions.</p>
+                    </div>
+                    
+                    <div style="margin-top: 40px; padding: 20px; background-color: rgba(37, 99, 235, 0.1); border-radius: 8px; border-left: 4px solid var(--primary);">
+                        <h3 style="color: white; margin-top: 0; margin-bottom: 15px;"><i class="fas fa-file-contract" style="margin-right: 8px;"></i><a href="#terms-conditions" style="color: var(--primary); text-decoration: none;">Terms and Conditions</a></h3>
+                        <p style="color: var(--gray); margin: 0; font-size: 0.95rem;">Please review our complete Terms and Conditions of Use for more information about product usage, liability limitations, and user responsibilities.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Terms and Conditions Section -->
+    <section class="section" id="terms-conditions" style="background-color: var(--dark);">
+        <div class="container">
+            <div style="max-width: 900px; margin: 0 auto; background-color: var(--card-bg); padding: 50px; border-radius: 12px; border: 1px solid var(--border);">
+                <h2 style="font-size: 2rem; margin-bottom: 30px; color: white;">Terms and Conditions of Use</h2>
+                <div style="color: var(--gray); line-height: 1.8; font-size: 0.95rem;">
+                    
+                    <p style="margin-bottom: 20px;"><strong>Last Updated: March 21, 2026</strong></p>
+                    
+                    <h3 style="color: white; margin-top: 30px; margin-bottom: 15px;">1. INTRODUCTION</h3>
+                    <p>Welcome to Next Draws ("Company," "we," "our," or "us"). These Terms and Conditions ("Terms") govern your access to and use of our website at https://www.nextdraws.com/ and any tools, indicators, scripts, or other products purchased or downloaded from us (collectively, the "Products").</p>
+                    <p>By accessing our website, purchasing any Product, or downloading any content, you acknowledge that you have read, understood, and agree to be bound by these Terms. If you do not agree to these Terms, you may not access or use our Products.</p>
+                    
+                    <h3 style="color: white; margin-top: 30px; margin-bottom: 15px;">2. PRODUCT CLASSIFICATION AND NO INVESTMENT ADVICE</h3>
+                    <h4 style="color: var(--primary);">2.1 Product Nature</h4>
+                    <p>Our Products are technical analysis tools and educational resources only. They are designed to assist users in analyzing market data based on user-defined parameters and logic.</p>
+                    
+                    <h4 style="color: var(--primary);">2.2 No Investment Advice</h4>
+                    <p>We are not registered investment advisors, broker-dealers, financial planners, or securities professionals. We do not:</p>
+                    <ul style="margin-left: 20px; color: var(--light);">
+                        <li>Provide investment advice, financial advice, trading advice, or recommendations of any kind;</li>
+                        <li>Make any representation that any Product will result in profits or prevent losses;</li>
+                        <li>Offer opinions on the suitability of any Product for any particular user;</li>
+                        <li>Act as a fiduciary or advisor with respect to any user.</li>
+                    </ul>
+                    
+                    <h4 style="color: var(--primary);">2.3 No Reliance</h4>
+                    <p>Nothing contained in our website, Product descriptions, documentation, examples, tutorials, or communications constitutes, or should be relied upon as, a promise or representation regarding past or future performance. All users should conduct their own independent research and consult with qualified financial professionals before making any trading decisions.</p>
+                    
+                    <h3 style="color: white; margin-top: 30px; margin-bottom: 15px;">3. USER RESPONSIBILITY AND ASSUMPTION OF RISK</h3>
+                    <h4 style="color: var(--primary);">3.1 Sole Responsibility</h4>
+                    <p><strong>YOU ARE SOLELY AND COMPLETELY RESPONSIBLE FOR:</strong></p>
+                    <ul style="margin-left: 20px; color: var(--light);">
+                        <li>All trading decisions you make;</li>
+                        <li>All profits and losses incurred in your trading activities;</li>
+                        <li>Configuring, testing, and validating any Product before use in live trading;</li>
+                        <li>Monitoring any automated or manual trading activity;</li>
+                        <li>Compliance with all applicable laws and regulations in your jurisdiction.</li>
+                    </ul>
+                    
+                    <h4 style="color: var(--primary);">3.2 Acknowledgment of Trading Risks</h4>
+                    <p>Trading in financial markets involves substantial risk of loss. You acknowledge and agree that:</p>
+                    <ul style="margin-left: 20px; color: var(--light);">
+                        <li>Past performance is not indicative of future results;</li>
+                        <li>Market conditions are volatile and unpredictable;</li>
+                        <li>Losses can exceed expectations and result in loss of partial or entire capital;</li>
+                        <li>No trading strategy, tool, or indicator can guarantee profits or prevent losses;</li>
+                        <li>Different market conditions (trending, sideways, volatile) may render any Product ineffective.</li>
+                    </ul>
+                    
+                    <h4 style="color: var(--primary);">3.3 Individual Factors</h4>
+                    <p>You acknowledge that trading outcomes depend on numerous personal factors including but not limited to:</p>
+                    <ul style="margin-left: 20px; color: var(--light);">
+                        <li>Your capital size and risk tolerance;</li>
+                        <li>Your psychological readiness and emotional discipline;</li>
+                        <li>Your experience level and trading style;</li>
+                        <li>Broker execution quality, slippage, and latency;</li>
+                        <li>API connectivity and platform stability.</li>
+                    </ul>
+                    
+                    <h4 style="color: var(--primary);">3.4 Testing Required</h4>
+                    <p>Before using any Product in live trading, you must:</p>
+                    <ul style="margin-left: 20px; color: var(--light);">
+                        <li>Conduct thorough backtesting under various market conditions;</li>
+                        <li>Perform forward testing or paper trading;</li>
+                        <li>Validate all logic and parameters;</li>
+                        <li>Understand all limitations of the Product.</li>
+                    </ul>
+                    
+                    <h3 style="color: white; margin-top: 30px; margin-bottom: 15px;">4. NO WARRANTIES; PRODUCT PROVIDED "AS-IS"</h3>
+                    <h4 style="color: var(--primary);">4.1 "As-Is" Basis</h4>
+                    <p><strong>OUR PRODUCTS ARE PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED.</strong> TO THE FULLEST EXTENT PERMITTED BY LAW, WE DISCLAIM ALL WARRANTIES, INCLUDING BUT NOT LIMITED TO:</p>
+                    <ul style="margin-left: 20px; color: var(--light);">
+                        <li>Implied warranties of merchantability;</li>
+                        <li>Fitness for a particular purpose;</li>
+                        <li>Non-infringement;</li>
+                        <li>Uninterrupted or error-free operation;</li>
+                        <li>Accuracy or reliability of results.</li>
+                    </ul>
+                    
+                    <h4 style="color: var(--primary);">4.2 No Performance Guarantees</h4>
+                    <p><strong>WE MAKE NO GUARANTEES, REPRESENTATIONS, OR WARRANTIES REGARDING:</strong></p>
+                    <ul style="margin-left: 20px; color: var(--light);">
+                        <li>The profitability of any Product;</li>
+                        <li>The performance of any Product in live market conditions;</li>
+                        <li>The achievement of any particular trading outcome;</li>
+                        <li>The prevention of losses or preservation of capital;</li>
+                        <li>The compatibility of any Product with any specific platform version.</li>
+                    </ul>
+                    
+                    <h4 style="color: var(--primary);">4.3 Technical Limitations</h4>
+                    <p>We do not warrant that:</p>
+                    <ul style="margin-left: 20px; color: var(--light);">
+                        <li>Products will be free from bugs, errors, or malfunctions;</li>
+                        <li>Products will be compatible with all platform versions or updates;</li>
+                        <li>Platform providers (including NinjaTrader) will not change their systems in ways that affect Product functionality.</li>
+                    </ul>
+                    
+                    <h3 style="color: white; margin-top: 30px; margin-bottom: 15px;">5. LIMITATION OF LIABILITY</h3>
+                    <p><strong>TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, UNDER NO CIRCUMSTANCES SHALL NEXT DRAWS, ITS OFFICERS, DIRECTORS, EMPLOYEES, OR AGENTS BE LIABLE FOR:</strong></p>
+                    
+                    <h4 style="color: var(--primary);">5.1 Direct Losses</h4>
+                    <p>Any trading losses, missed profits, or financial damages incurred in connection with your use of any Product.</p>
+                    
+                    <h4 style="color: var(--primary);">5.2 Indirect and Consequential Damages</h4>
+                    <p><strong>ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING BUT NOT LIMITED TO:</strong></p>
+                    <ul style="margin-left: 20px; color: var(--light);">
+                        <li>Loss of profits, revenue, data, or business opportunities;</li>
+                        <li>Loss of goodwill or reputation;</li>
+                        <li>Trading losses or missed trading opportunities;</li>
+                        <li>Emotional distress or psychological harm.</li>
+                    </ul>
+                    
+                    <h4 style="color: var(--primary);">5.3 Third-Party Failures</h4>
+                    <p>Damages resulting from:</p>
+                    <ul style="margin-left: 20px; color: var(--light);">
+                        <li>Exchange downtime, API failures, or connectivity issues;</li>
+                        <li>Broker execution problems, slippage, or platform errors;</li>
+                        <li>Market gaps, volatility, or unusual market conditions.</li>
+                    </ul>
+                    
+                    <h4 style="color: var(--primary);">5.4 User Errors</h4>
+                    <p>Damages resulting from:</p>
+                    <ul style="margin-left: 20px; color: var(--light);">
+                        <li>User misconfiguration of Product parameters;</li>
+                        <li>Improper use or misuse of Products;</li>
+                        <li>Failure to test or validate Products before use.</li>
+                    </ul>
+                    
+                    <h4 style="color: var(--primary);">5.5 Liability Cap</h4>
+                    <p><strong>IN NO EVENT SHALL OUR AGGREGATE LIABILITY TO YOU EXCEED THE TOTAL AMOUNT PAID BY YOU TO US FOR THE SPECIFIC PRODUCT GIVING RISE TO THE CLAIM DURING THE TWELVE (12) MONTHS PRECEDING THE CLAIM.</strong></p>
+                    
+                    <h3 style="color: white; margin-top: 30px; margin-bottom: 15px;">6. RELATIONSHIP WITH PLATFORM PROVIDERS</h3>
+                    <h4 style="color: var(--primary);">6.1 Independent Developer</h4>
+                    <p>You acknowledge that Next Draws is an independent entity and is not affiliated with, endorsed by, sponsored by, or approved by NinjaTrader, TradingView, or any other platform provider whose software may be compatible with our Products.</p>
+                    
+                    <h4 style="color: var(--primary);">6.2 No Endorsement</h4>
+                    <p>Any listing of our Products on third-party directories (including the NinjaTrader Ecosystem) does not constitute an endorsement, recommendation, or approval of our Products by such platform providers.</p>
+                    
+                    <h4 style="color: var(--primary);">6.3 Platform Terms Control</h4>
+                    <p>Your use of any trading platform (including NinjaTrader) is governed by that platform's own terms and conditions. We are not responsible for any violations of those terms arising from your use of our Products.</p>
+                    
+                    <h4 style="color: var(--primary);">6.4 Platform Changes</h4>
+                    <p>Platform providers may modify their software, APIs, or terms of service at any time, which could affect Product functionality. We are not liable for any such changes or their impact on Product performance.</p>
+                    
+                    <h3 style="color: white; margin-top: 30px; margin-bottom: 15px;">7. INDEMNIFICATION</h3>
+                    <p>You agree to defend, indemnify, and hold harmless Next Draws, its officers, directors, employees, and agents from and against any and all claims, damages, obligations, losses, liabilities, costs, debts, and expenses (including but not limited to attorney's fees) arising from:</p>
+                    <ul style="margin-left: 20px; color: var(--light);">
+                        <li>(a) Your use of and access to any Product;</li>
+                        <li>(b) Your violation of any term of these Terms;</li>
+                        <li>(c) Your violation of any third-party right, including without limitation any intellectual property right, privacy right, or proprietary right;</li>
+                        <li>(d) Any claim that your use of any Product caused financial loss or damage to you or any third party;</li>
+                        <li>(e) Any claim brought by any platform provider (including NinjaTrader) related to your use of our Products in connection with their platform; or</li>
+                        <li>(f) Any dispute between you and any third party, including other traders, brokers, or platform providers.</li>
+                    </ul>
+                    <p>This indemnification obligation shall survive the termination of these Terms and your use of any Product.</p>
+                    
+                    <h3 style="color: white; margin-top: 30px; margin-bottom: 15px;">8. INTELLECTUAL PROPERTY RIGHTS</h3>
+                    <h4 style="color: var(--primary);">8.1 Ownership</h4>
+                    <p>Our Products, including all indicators, scripts, code, documentation, graphics, and written content, are the proprietary property of Next Draws and are protected by copyright, trade secret, and other intellectual property laws.</p>
+                    
+                    <h4 style="color: var(--primary);">8.2 License Grant</h4>
+                    <p>Subject to your compliance with these Terms, we grant you a limited, non-exclusive, non-transferable, revocable license to use the Products solely for your personal, non-commercial trading activities.</p>
+                    
+                    <h4 style="color: var(--primary);">8.3 License Restrictions</h4>
+                    <p>You may NOT:</p>
+                    <ul style="margin-left: 20px; color: var(--light);">
+                        <li>Sell, license, sub-license, rent, transfer, or distribute any Product to any third party;</li>
+                        <li>Modify, adapt, reverse engineer, decompile, or disassemble any Product;</li>
+                        <li>Create derivative works based on any Product;</li>
+                        <li>Remove or alter any proprietary notices or labels;</li>
+                        <li>Use any Product to compete with us, directly or indirectly.</li>
+                    </ul>
+                    
+                    <h4 style="color: var(--primary);">8.4 Confidentiality</h4>
+                    <p>You are solely responsible for maintaining the secrecy of any software code and protections related to our Products against reverse engineering or other discovery. We disclaim all responsibility for the protection or secrecy of your copy of any Product.</p>
+                    
+                    <h3 style="color: white; margin-top: 30px; margin-bottom: 15px;">9. THIRD-PARTY LINKS AND SERVICES</h3>
+                    <p>Our website or Products may contain links to third-party websites or services (including NinjaTrader and TradingView). We do not control, endorse, or assume any responsibility for the content, privacy policies, or practices of any third-party websites or services.</p>
+                    <p>You acknowledge and agree that we shall not be liable for any damage or loss caused by or in connection with your use of or reliance on any such third-party content, goods, or services.</p>
+                    
+                    <h3 style="color: white; margin-top: 30px; margin-bottom: 15px;">10. TERMINATION</h3>
+                    <h4 style="color: var(--primary);">10.1 Termination by Us</h4>
+                    <p>We reserve the right, in our sole discretion, to suspend or terminate your access to any Product or our website at any time for any reason or no reason, with or without notice.</p>
+                    
+                    <h4 style="color: var(--primary);">10.2 Termination by You</h4>
+                    <p>You may discontinue using our Products at any time.</p>
+                    
+                    <h4 style="color: var(--primary);">10.3 Effect of Termination</h4>
+                    <p>Upon termination:</p>
+                    <ul style="margin-left: 20px; color: var(--light);">
+                        <li>Your license to use the Product immediately ceases;</li>
+                        <li>You must cease all use of the Product and delete all copies;</li>
+                        <li>Sections 3, 4, 5, 6, 7, 8, 11, 12, and 13 shall survive termination.</li>
+                    </ul>
+                    
+                    <h3 style="color: white; margin-top: 30px; margin-bottom: 15px;">11. MODIFICATION OF TERMS</h3>
+                    <p>We reserve the right to modify these Terms at any time. We will notify users of material changes by posting the revised Terms on our website with an updated "Last Updated" date. Your continued use of our Products following any such modification constitutes your acceptance of the modified Terms.</p>
+                    
+                    <h3 style="color: white; margin-top: 30px; margin-bottom: 15px;">12. GOVERNING LAW AND DISPUTE RESOLUTION</h3>
+                    <h4 style="color: var(--primary);">12.1 Governing Law</h4>
+                    <p>These Terms shall be governed by and construed in accordance with the laws of applicable jurisdiction, without regard to its conflict of laws provisions.</p>
+                    
+                    <h4 style="color: var(--primary);">12.2 Dispute Resolution</h4>
+                    <p>Any dispute arising out of or relating to these Terms or your use of our Products shall be resolved exclusively through binding arbitration in accordance with standard arbitration rules, and judgment upon the award rendered by the arbitrator may be entered in any court having jurisdiction.</p>
+                    
+                    <h4 style="color: var(--primary);">12.3 Class Action Waiver</h4>
+                    <p>You agree to resolve disputes with us on an individual basis and waive any right to participate in a class action, class-wide arbitration, or representative action.</p>
+                    
+                    <h3 style="color: white; margin-top: 30px; margin-bottom: 15px;">13. ACKNOWLEDGMENT</h3>
+                    <p><strong>BY PURCHASING, DOWNLOADING, INSTALLING, OR USING ANY PRODUCT, YOU ACKNOWLEDGE THAT YOU HAVE READ THESE TERMS, UNDERSTAND THEM, AND AGREE TO BE BOUND BY THEM.</strong> You further acknowledge that:</p>
+                    <ul style="margin-left: 20px; color: var(--light);">
+                        <li>You have had the opportunity to seek independent legal advice;</li>
+                        <li>You understand the risks associated with trading and using our Products;</li>
+                        <li>You agree to assume all responsibility for your trading outcomes;</li>
+                        <li>You will not hold Next Draws liable for any losses or damages;</li>
+                        <li>You understand that we provide tools, not advice; code, not confidence; technology, not guarantees.</li>
+                    </ul>
+                    
+                    <p style="margin-top: 40px; text-align: center; color: var(--success); font-weight: 600;">--- END OF TERMS ---</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer>
         <div class="container">
@@ -1721,6 +2250,8 @@
                         <li><a href="#terms">Terms of Service</a></li>
                         <li><a href="#privacy">Privacy Policy</a></li>
                         <li><a href="#license">License Agreement</a></li>
+                        <li><a href="#terms-conditions">Terms and Conditions</a></li>
+                        <li><a href="#disclaimers">Disclaimers</a></li>
                     </ul>
                 </div>
             </div>
@@ -2875,6 +3406,76 @@
             `;
             document.head.appendChild(style);
         }
+        
+        // Disclaimer Modal Logic
+        function initDisclaimerModal() {
+            const disclaimerOverlay = document.getElementById('disclaimerModalOverlay');
+            const acceptBtn = document.getElementById('acceptDisclaimerBtn');
+            const declineBtn = document.getElementById('declineDisclaimerBtn');
+            const expandTnCBtn = document.getElementById('expandTnCBtn');
+            const tncContent = document.getElementById('tncContent');
+            const expandTnCIcon = document.getElementById('expandTnCIcon');
+            
+            // Check if user already accepted in this session
+            const disclaimerAccepted = sessionStorage.getItem('disclaimerAccepted');
+            
+            if (disclaimerAccepted === 'true') {
+                // Hide modal if already accepted
+                disclaimerOverlay.classList.add('hidden');
+            } else {
+                // Show modal if not accepted
+                disclaimerOverlay.classList.remove('hidden');
+                // Disable page scroll until accepted
+                document.body.style.overflow = 'hidden';
+            }
+            
+            // Terms and Conditions toggle
+            expandTnCBtn.addEventListener('click', function() {
+                const isVisible = tncContent.style.display === 'block';
+                if (isVisible) {
+                    tncContent.style.display = 'none';
+                    expandTnCIcon.style.transform = 'rotate(0deg)';
+                } else {
+                    tncContent.style.display = 'block';
+                    expandTnCIcon.style.transform = 'rotate(180deg)';
+                }
+            });
+            
+            // Accept button clicked
+            acceptBtn.addEventListener('click', function() {
+                sessionStorage.setItem('disclaimerAccepted', 'true');
+                disclaimerOverlay.classList.add('hidden');
+                // Allow page to be interactive
+                document.body.style.overflow = 'auto';
+            });
+            
+            // Decline button clicked
+            declineBtn.addEventListener('click', function() {
+                showAccessBlockedMessage();
+            });
+        }
+        
+        function showAccessBlockedMessage() {
+            // Hide modal
+            document.getElementById('disclaimerModalOverlay').classList.add('hidden');
+            
+            // Create blocked message
+            const blockedMessage = document.createElement('div');
+            blockedMessage.className = 'access-blocked-message';
+            blockedMessage.id = 'accessBlockedMsg';
+            blockedMessage.innerHTML = `
+                <h3><i class="fas fa-lock" style="margin-right: 8px;"></i>Access Denied</h3>
+                <p>You must accept the disclaimers to access our website. Trading involves substantial risk and we want to ensure you understand the risks before proceeding.</p>
+                <button onclick="location.reload()"><i class="fas fa-redo" style="margin-right: 8px;"></i>Try Again</button>
+            `;
+            document.body.appendChild(blockedMessage);
+            document.body.style.overflow = 'hidden';
+        }
+        
+        // Initialize modal on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            initDisclaimerModal();
+        });
         
         function setupEventListeners() {
             // Custom development form submission
