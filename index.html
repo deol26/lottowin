@@ -1314,6 +1314,7 @@
                 <button class="filter-btn" data-filter="free" style="display: flex; flex-direction: column; align-items: center; gap: 2px;">
                     <span>Free Indicators/Tools <small style="animation: blink 1s infinite; color: var(--warning); font-weight: bold;">coming soon</small></span>
                 </button>
+                <button class="filter-btn" data-filter="videos">Videos</button>
             </div>
             
             <div class="products-grid" id="productsGrid">
@@ -1321,6 +1322,96 @@
             </div>
         </div>
     </section>
+
+    <!-- Videos Section -->
+    <section class="section" id="videos" style="background-color: var(--dark);">
+        <div class="container">
+            <h2 class="section-title">Trading Tutorials & Videos</h2>
+            <p class="section-subtitle">Learn from our comprehensive video tutorials and trading guides</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; margin-top: 0px;">
+                <!-- Video 1 -->
+                <div class="video-thumbnail" style="cursor: pointer; border-radius: 12px; overflow: hidden; background-color: var(--card-bg); border: 1px solid var(--border); transition: transform 0.3s ease;" onclick="openVideoModal('oJV98nL9KUA', 'keylevels indicator')">
+                    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background-color: #000;">
+                        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
+                            <img src="https://img.youtube.com/vi/oJV98nL9KUA/mqdefault.jpg" style="width: 100%; height: 100%; object-fit: cover;">
+                            <i class="fas fa-play-circle" style="position: absolute; font-size: 3rem; color: white; opacity: 0.8;"></i>
+                        </div>
+                    </div>
+                    <div style="padding: 15px;">
+                        <h4 style="color: white; margin: 0; font-size: 0.95rem;">keylevels indicator</h4>
+                        <p style="color: var(--gray); font-size: 0.85rem; margin: 5px 0 0 0;">Key Levels Indicator Tutorial</p>
+                    </div>
+                </div>
+
+                <!-- Video 2 -->
+                <div class="video-thumbnail" style="cursor: pointer; border-radius: 12px; overflow: hidden; background-color: var(--card-bg); border: 1px solid var(--border); transition: transform 0.3s ease;" onclick="openVideoModal('dxROwQFBvrE', 'DeolMACD')">
+                    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background-color: #000;">
+                        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
+                            <img src="https://img.youtube.com/vi/dxROwQFBvrE/mqdefault.jpg" style="width: 100%; height: 100%; object-fit: cover;">
+                            <i class="fas fa-play-circle" style="position: absolute; font-size: 3rem; color: white; opacity: 0.8;"></i>
+                        </div>
+                    </div>
+                    <div style="padding: 15px;">
+                        <h4 style="color: white; margin: 0; font-size: 0.95rem;">DeolMACD</h4>
+                        <p style="color: var(--gray); font-size: 0.85rem; margin: 5px 0 0 0;">DeolMACD Indicator Tutorial</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Modal -->
+    <div id="videoModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.9); z-index: 2000; align-items: center; justify-content: center;">
+        <div style="position: relative; width: 90%; max-width: 900px; height: 80vh; max-height: 600px;">
+            <button onclick="closeVideoModal()" style="position: absolute; top: -40px; right: 0; background: none; border: none; color: white; font-size: 2rem; cursor: pointer;">
+                <i class="fas fa-times"></i>
+            </button>
+            <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px;">
+                <iframe 
+                    id="videoPlayer"
+                    src=""
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openVideoModal(videoId, title) {
+            const modal = document.getElementById('videoModal');
+            const player = document.getElementById('videoPlayer');
+            player.src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1';
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeVideoModal() {
+            const modal = document.getElementById('videoModal');
+            const player = document.getElementById('videoPlayer');
+            player.src = '';
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside the video
+        document.getElementById('videoModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeVideoModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeVideoModal();
+            }
+        });
+    </script>
 
     <!-- Checkout Section -->
     <section class="section" id="checkout">
@@ -2375,7 +2466,7 @@
         const products = [
             {
                 id: 1,
-                name: "Punjabi Trade Signals",
+                name: "Punjabi Retracement alerts",
                 description: "A unique NinjaTrader indicator that displays professional buy/sell signals in authentic Punjabi script (ਖਰੀਦੇ/ਵੇਚੇ).",
                 price: 1000.00,
                 originalPrice: 2000.00,
